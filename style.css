@@ -1,116 +1,48 @@
-:root {
-  --bg: #ffffff;
-  --ink: #111111;
-  --accent: #bc9c22;
-  --soft-gray: #f9f9f9;
-  /* Smooth easing for a luxury feel */
-  --ease: cubic-bezier(0.23, 1, 0.32, 1);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Ape Studio | Open Editions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* 1. Global Refinements */
-html { scroll-behavior: smooth; }
+    <nav class="nav">
+        <div class="logo">FANCY APE STUDIO</div>
+        <div class="nav-links">
+            <a href="#">COLLECTIONS</a>
+            <a href="#">ABOUT</a>
+            <a href="#">CART (0)</a>
+        </div>
+    </nav>
 
-body {
-  margin: 0;
-  background: var(--bg);
-  font-family: 'Montserrat', sans-serif;
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+    <section class="hero">
+        <span class="sub-header">Digital Provenance // Physical Mastery</span>
+        <h1 class="h1">Open Editions</h1>
+        <p class="hero-text">
+            Museum-grade pigment prints optimized for zero-latency browsing. 
+            Curated for the modern collector.
+        </p>
+    </section>
 
-/* 2. Header/Hero */
-.hero {
-  padding: clamp(100px, 15vh, 200px) 20px; /* Responsive padding */
-  text-align: center;
-  border-bottom: 1px solid #f0f0f0;
-}
+    <div class="grid">
+        <a class="art-card" href="https://shop.fancyape.com/open-editions">
+            <div class="img-wrap">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200" alt="The Archive Series">
+            </div>
+            <div class="card-meta">
+                <h3 class="card-title">The Archive Series</h3>
+                <div class="btn">View Collection</div>
+            </div>
+        </a>
+        
+        </div>
 
-.h1 {
-  font-family: 'Playfair Display', serif !important;
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  font-weight: 400;
-  margin: 15px 0;
-  font-style: italic;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-}
+    <footer>
+        &copy; 2026 FANCY APE STUDIO &bull; ARCHITECTURE BY VERCEL &bull; FULFILLMENT BY ASF
+    </footer>
 
-/* 3. Grid & Cards */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 80px; /* More breathing room */
-  max-width: 1400px; /* Slightly wider for large displays */
-  margin: 100px auto;
-  padding: 0 40px;
-}
-
-.art-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  outline: none;
-}
-
-.img-wrap {
-  background: var(--soft-gray);
-  padding: 60px; /* Increased padding for that "matted art" look */
-  border: 1px solid #eee;
-  transition: transform 0.8s var(--ease), border-color 0.4s ease, box-shadow 0.8s var(--ease);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* The Hover "Intelligence" Effect */
-.art-card:hover .img-wrap {
-  border-color: var(--ink);
-  transform: translateY(-12px);
-  background: #ffffff;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.08); /* Soft gallery shadow */
-}
-
-.img-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Shadow on the art itself */
-}
-
-/* 4. Luxury Button */
-.btn {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 16px 48px;
-  border: 1px solid var(--ink);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  transition: all 0.4s var(--ease);
-  position: relative;
-  background: transparent;
-}
-
-.art-card:hover .btn {
-  background: var(--ink);
-  color: #fff !important;
-}
-
-/* 5. Footer */
-footer {
-  text-align: center;
-  padding: 120px 20px;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  opacity: 0.4;
-  border-top: 1px solid #f0f0f0;
-}
-
-/* 6. Responsive Adjustments */
-@media (max-width: 768px) {
-  .grid { padding: 0 20px; gap: 40px; }
-  .img-wrap { padding: 30px; }
-}
+</body>
+</html>
