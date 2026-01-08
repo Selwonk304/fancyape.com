@@ -3,176 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Ape Studio | Art & Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #ffffff;
-            --ink: #000000;
-            --soft-gray: #f4f4f4;
-            --accent: #bc9c22;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        [data-theme='dark'] {
-            --bg: #0a0a0a;
-            --ink: #ffffff;
-            --soft-gray: #1a1a1a;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-
-        body {
-            background: var(--bg);
-            color: var(--ink);
-            font-family: 'Inter', sans-serif;
-            transition: background 0.5s ease;
-            overflow-x: hidden;
-        }
-
-        /* Custom Cursor */
-        #cursor {
-            width: 12px; height: 12px; background: var(--ink);
-            border-radius: 50%; position: fixed; pointer-events: none;
-            z-index: 9999; transition: transform 0.2s ease;
-            mix-blend-mode: difference;
-        }
-
-        /* Layout */
-        header {
-            height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 8%;
-        }
-
-        .h1-container { overflow: hidden; }
-        .h1 {
-            font-family: 'Bodoni Moda', serif;
-            font-style: italic;
-            font-size: clamp(4rem, 15vw, 10rem);
-            line-height: 0.85;
-            letter-spacing: -0.03em;
-            transform: translateY(100%);
-            animation: slideUp 1.2s forwards 0.2s;
-        }
-
-        .tagline {
-            margin-top: 40px;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            font-size: 0.65rem;
-            font-weight: 600;
-            opacity: 0;
-            animation: fadeIn 1s forwards 1s;
-        }
-
-        /* Nav Grid */
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-            border-top: 1px solid var(--soft-gray);
-        }
-
-        .nav-link {
-            padding: 120px 8%;
-            text-decoration: none;
-            color: inherit;
-            border-right: 1px solid var(--soft-gray);
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .nav-link:last-child { border-right: none; }
-
-        .nav-link h2 {
-            font-family: 'Bodoni Moda', serif;
-            font-style: italic;
-            font-size: clamp(2rem, 5vw, 4rem);
-            position: relative;
-            z-index: 2;
-        }
-
-        .nav-link .label {
-            font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            margin-bottom: 30px;
-            display: block;
-            opacity: 0.6;
-        }
-
-        /* Hover States */
-        .nav-link::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 0%;
-            background: var(--ink); transition: var(--transition); z-index: 1;
-        }
-
-        .nav-link:hover::before { height: 100%; }
-        .nav-link:hover { color: var(--bg); }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed; top: 30px; right: 30px;
-            background: none; border: 1px solid var(--soft-gray);
-            color: var(--ink); padding: 10px 20px;
-            border-radius: 20px; font-size: 0.6rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            z-index: 1000;
-        }
-
-        @keyframes slideUp { to { transform: translateY(0); } }
-        @keyframes fadeIn { to { opacity: 0.6; } }
-
-        @media (max-width: 768px) {
-            .nav-grid { grid-template-columns: 1fr; }
-            .nav-link { border-right: none; border-bottom: 1px solid var(--soft-gray); }
-        }
-    </style>
+    <title>Fancy Ape Studio | Open Editions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="cursor"></div>
-    <button class="theme-toggle" onclick="toggleTheme()">Mode</button>
+    <section class="hero">
+        <span style="letter-spacing: 0.5em; text-transform: uppercase; font-size: 0.7rem; opacity: 0.5;">Digital Provenance // Physical Mastery</span>
+        <h1 class="h1">Open Editions</h1>
+        <p style="max-width: 550px; margin: 25px auto; font-weight: 300; opacity: 0.7;">
+            Museum-grade pigment prints optimized for zero-latency browsing.
+        </p>
+    </section>
 
-    <header>
-        <div class="h1-container"><h1 class="h1">Fancy Ape</h1></div>
-        <div class="h1-container"><h1 class="h1">Studio.</h1></div>
-        <p class="tagline">Physical Art × Digital Intelligence</p>
-    </header>
-
-    <nav class="nav-grid">
-        <a href="https://shop.fancyape.com" class="nav-link">
-            <span class="label">01 / RETAIL</span>
-            <h2>Open Editions</h2>
+    <div class="grid">
+        <a class="art-card" href="https://shop.fancyape.com/open-editions">
+            <div class="img-wrap">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800" style="width:100%;" alt="The Archive">
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <h3 style="font-family: 'Playfair Display'; font-size: 1.8rem; font-style: italic;">The Archive Series</h3>
+                <div class="btn">View Collection</div>
+            </div>
         </a>
-        <a href="https://fave.fancyape.com" class="nav-link">
-            <span class="label">02 / ENGINE</span>
-            <h2>Valuation Tool</h2>
-        </a>
-    </nav>
+    </div>
 
-    <script>
-        // Custom Cursor Logic
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+    <footer>
+        &copy; 2026 FANCY APE STUDIO &bull; ARCHITECTURE BY VERCEL &bull; FULFILLMENT BY ASF
+    </footer>
 
-        // Expand cursor on links
-        document.querySelectorAll('a, button').forEach(link => {
-            link.addEventListener('mouseenter', () => cursor.style.transform = 'scale(4)');
-            link.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
-        });
-
-        // Theme Toggle Logic
-        function toggleTheme() {
-            const body = document.body;
-            const current = body.getAttribute('data-theme');
-            body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
-        }
-    </script>
 </body>
 </html>
