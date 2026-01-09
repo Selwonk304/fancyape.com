@@ -1,62 +1,82 @@
 :root {
-    --bg: #050505;
-    --ink: #ffffff;
+    --bg: #000;
+    --ink: #fff;
     --accent: #bc9c22;
-    --intel-blue: #55daff; /* Cyan from your screenshot */
-    --glass: rgba(255, 255, 255, 0.03);
+    --intel-blue: #55daff;
+    --glass: rgba(255, 255, 255, 0.05);
     --border: rgba(255, 255, 255, 0.1);
 }
 
-body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font-family: 'Inter', sans-serif; overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+body, html {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: var(--bg); color: var(--ink);
+    font-family: 'Inter', sans-serif; overflow: hidden;
 }
 
-/* Intelligence Header Stats */
-.intel-header {
-    display: flex; justify-content: space-between; width: 100%;
-    max-width: 800px; margin: 0 auto 15px;
-    font-size: 0.65rem; letter-spacing: 0.2em; font-weight: 800;
+/* Cinematic Video Backdrop */
+.video-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: -1; opacity: 0.6; filter: brightness(0.4);
 }
-.cyan-text { color: var(--intel-blue); text-transform: uppercase; }
 
-/* The Command Capsule */
-.command-bar {
-    background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(20,20,40,0.4) 100%);
+/* Terminal HUD Overlay */
+.terminal-overlay {
+    height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+    padding: 20px; text-align: center;
+}
+
+.welcome-msg {
+    font-size: 0.7rem; letter-spacing: 0.8em; text-transform: uppercase;
+    margin-bottom: 60px; opacity: 0.8; font-weight: 300;
+}
+
+/* The FAVE Command Capsule */
+.fave-capsule {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 100px;
-    padding: 10px;
+    padding: 10px 30px;
     display: flex; align-items: center;
-    width: 100%; max-width: 850px; margin: 0 auto 30px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    width: 100%; max-width: 800px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02);
+    transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.icon-group { display: flex; gap: 20px; padding: 0 25px; opacity: 0.6; cursor: pointer; }
-.icon-group svg { transition: 0.3s; }
-.icon-group svg:hover { opacity: 1; color: var(--intel-blue); }
+.fave-capsule:hover { border-color: var(--intel-blue); box-shadow: 0 0 50px rgba(85, 218, 255, 0.2); }
 
-input#asset-input {
-    background: none; border: none; color: white; flex: 1;
-    font-size: 1rem; padding: 10px; outline: none; opacity: 0.8;
+input {
+    background: none; border: none; color: #fff; flex: 1;
+    font-size: 1rem; padding: 15px; outline: none; letter-spacing: 0.05em;
 }
 
-/* Secure Scan Button */
-.secure-btn {
-    background: #ffffff; color: #000; border: none;
-    padding: 15px 40px; border-radius: 50px;
-    font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1em;
-    display: flex; align-items: center; gap: 10px; cursor: pointer;
-    transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+.scan-btn {
+    background: #fff; color: #000; border: none;
+    padding: 14px 35px; border-radius: 50px;
+    font-weight: 800; font-size: 0.65rem; letter-spacing: 0.15em;
+    cursor: pointer; transition: 0.3s;
 }
-.secure-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
 
-/* Bridge Button to Collections */
-.collections-bridge {
-    position: fixed; bottom: 40px; right: 40px;
-    background: none; border: 1px solid var(--accent);
-    color: var(--accent); padding: 12px 25px; border-radius: 5px;
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    text-decoration: none; transition: 0.4s;
+.scan-btn:hover { background: var(--intel-blue); transform: scale(1.05); }
+
+/* Bottom Protocol Stats */
+.protocol-footer {
+    position: absolute; bottom: 80px; width: 100%;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
 }
-.collections-bridge:hover { background: var(--accent); color: #000; }
+
+.status-bar { font-size: 0.55rem; letter-spacing: 0.4em; color: var(--intel-blue); opacity: 0.6; }
+
+.nav-bridge {
+    display: flex; gap: 40px; margin-top: 20px;
+}
+
+.nav-item {
+    text-decoration: none; color: #fff; font-size: 0.6rem;
+    letter-spacing: 0.2em; opacity: 0.4; border-bottom: 1px solid transparent;
+    transition: 0.3s; padding-bottom: 5px;
+}
+
+.nav-item:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
