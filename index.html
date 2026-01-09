@@ -60,6 +60,39 @@
             const y = (window.innerHeight / 2 - e.pageY) / 40;
             orb.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
         });
-    </script>
+    const orb = document.querySelector('.glass-orb');
+const scanBtn = document.querySelector('.scan-btn');
+const assetInput = document.getElementById('asset-input');
+const scanLine = document.querySelector('.scan-line');
+
+// 3D Tilt Logic
+document.addEventListener('mousemove', (e) => {
+    const x = (window.innerWidth / 2 - e.pageX) / 40;
+    const y = (window.innerHeight / 2 - e.pageY) / 40;
+    orb.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+});
+
+// Simulated Valuation Logic
+scanBtn.addEventListener('click', () => {
+    const val = assetInput.value;
+    if (!val) return alert("Please enter an asset name");
+
+    // UI Feedback: Speed up scan line
+    scanBtn.innerText = "ANALYZING...";
+    scanLine.style.animationDuration = "0.5s";
+    scanLine.style.background = "#06b6d4"; // Change color to cyan during scan
+
+    setTimeout(() => {
+        // Generate a random valuation for the demo
+        const estimatedValue = (Math.random() * (5000 - 500) + 500).toLocaleString(undefined, {minimumFractionDigits: 2});
+        
+        // Reset UI and show result
+        scanLine.style.animationDuration = "3s";
+        scanLine.style.background = "var(--accent)";
+        scanBtn.innerText = "SCAN NOW";
+        
+        alert(`F.A.V.E. Intelligence Report:\nAsset: ${val}\nEstimated Market Value: $${estimatedValue} USD\nConfidence Score: 94%`);
+    }, 2000);
+});</script>
 </body>
 </html>
