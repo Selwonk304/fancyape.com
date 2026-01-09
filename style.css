@@ -2,7 +2,7 @@
     --bg: #050505;
     --ink: #ffffff;
     --accent: #bc9c22;
-    --faint-blue: #06b6d4;
+    --intel-blue: #55daff; /* Cyan from your screenshot */
     --glass: rgba(255, 255, 255, 0.03);
     --border: rgba(255, 255, 255, 0.1);
 }
@@ -10,53 +10,53 @@
 body {
     margin: 0; background: var(--bg); color: var(--ink);
     font-family: 'Inter', sans-serif; overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* 1. Kinetic Typography Reveal */
-.h1-container { overflow: hidden; position: relative; }
-.h1 {
-    font-family: 'Bodoni Moda', serif; font-style: italic;
-    font-size: clamp(4rem, 15vw, 10rem); line-height: 0.85;
-    animation: revealUp 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+/* Intelligence Header Stats */
+.intel-header {
+    display: flex; justify-content: space-between; width: 100%;
+    max-width: 800px; margin: 0 auto 15px;
+    font-size: 0.65rem; letter-spacing: 0.2em; font-weight: 800;
+}
+.cyan-text { color: var(--intel-blue); text-transform: uppercase; }
+
+/* The Command Capsule */
+.command-bar {
+    background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(20,20,40,0.4) 100%);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 10px;
+    display: flex; align-items: center;
+    width: 100%; max-width: 850px; margin: 0 auto 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
-@keyframes revealUp {
-    0% { transform: translateY(105%) skewY(10deg); opacity: 0; }
-    100% { transform: translateY(0) skewY(0); opacity: 1; }
+.icon-group { display: flex; gap: 20px; padding: 0 25px; opacity: 0.6; cursor: pointer; }
+.icon-group svg { transition: 0.3s; }
+.icon-group svg:hover { opacity: 1; color: var(--intel-blue); }
+
+input#asset-input {
+    background: none; border: none; color: white; flex: 1;
+    font-size: 1rem; padding: 10px; outline: none; opacity: 0.8;
 }
 
-/* 2. Interactive Background Glows */
-.glow-orb {
-    position: fixed; width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(188, 156, 34, 0.08) 0%, transparent 70%);
-    filter: blur(80px); pointer-events: none; z-index: -1;
-    transition: transform 0.3s ease-out;
+/* Secure Scan Button */
+.secure-btn {
+    background: #ffffff; color: #000; border: none;
+    padding: 15px 40px; border-radius: 50px;
+    font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1em;
+    display: flex; align-items: center; gap: 10px; cursor: pointer;
+    transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
+.secure-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
 
-/* 3. Glass-Morph Nav Links */
-.nav-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid var(--border);
+/* Bridge Button to Collections */
+.collections-bridge {
+    position: fixed; bottom: 40px; right: 40px;
+    background: none; border: 1px solid var(--accent);
+    color: var(--accent); padding: 12px 25px; border-radius: 5px;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; transition: 0.4s;
 }
-
-.nav-link {
-    padding: 140px 10%; position: relative; overflow: hidden;
-    border-right: 1px solid var(--border); transition: 0.4s;
-}
-
-/* The Glitch Hover Effect */
-.nav-link:hover { background: rgba(255,255,255,0.02); }
-.nav-link::after {
-    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
-    background: var(--accent); transform: scaleX(0);
-    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.nav-link:hover::after { transform: scaleX(1); }
-
-/* 4. Custom Digital Cursor */
-#cursor {
-    width: 10px; height: 10px; background: var(--accent);
-    border-radius: 50%; position: fixed; pointer-events: none;
-    mix-blend-mode: screen; z-index: 9999;
-    box-shadow: 0 0 15px var(--accent);
-}
+.collections-bridge:hover { background: var(--accent); color: #000; }

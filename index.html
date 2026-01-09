@@ -3,60 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Ape | Intelligence Lab</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    <title>F.A.V.E. | Intelligence Layer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="cursor"></div>
-    <div class="glow-orb" id="glow"></div>
+    <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;">
+        
+        <p style="margin-bottom: 60px; letter-spacing: 0.3em; opacity: 0.8; font-weight: 300;">WELCOME TO FANCY APE™</p>
 
-    <header style="height: 85vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%;">
-        <div class="h1-container"><h1 class="h1">Fancy Ape</h1></div>
-        <div class="h1-container"><h1 class="h1">Studio.</h1></div>
-        <div style="display: flex; align-items: center; margin-top: 40px; gap: 20px;">
-            <div style="width: 40px; height: 1px; background: var(--accent);"></div>
-            <p style="letter-spacing: 0.6em; text-transform: uppercase; font-size: 0.6rem; opacity: 0.6;">
-            </p>
+        <div class="intel-header">
+            <span class="cyan-text">ⓘ ASSET INTELLIGENCE CONVICTION</span>
+            <span style="opacity: 0.5;">20%</span>
         </div>
-    </header>
 
-    <nav class="nav-grid">
-        <a href="https://shop.fancyape.com" class="nav-link">
-            <span style="font-size: 0.6rem; letter-spacing: 0.3em; opacity: 0.4; display: block; margin-bottom: 20px;">01 // RETAIL</span>
-            <h2 style="font-family: 'Bodoni Moda'; font-style: italic; font-size: 3rem;">Collections</h2>
-        </a>
-        <a href="https://fave.fancyape.com" class="nav-link">
-            <span style="font-size: 0.6rem; letter-spacing: 0.3em; opacity: 0.4; display: block; margin-bottom: 20px;">02 // ENGINE</span>
-            <h2 style="font-family: 'Bodoni Moda'; font-style: italic; font-size: 3rem;">F.A.V.E. Tool</h2>
-        </a>
-    </nav>
+        <div class="command-bar">
+            <div class="icon-group">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </div>
+            
+            <input type="text" placeholder="APPRAISE ARTWORK..." id="asset-input">
+            
+            <button class="secure-btn" onclick="startScan()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                #SECURE_SCAN
+            </button>
+        </div>
+
+        <div style="text-align: center; opacity: 0.4; font-size: 0.6rem; letter-spacing: 0.4em;">
+            <span style="color: var(--intel-blue);">✦</span> INTELLIGENCE LAYER ACTIVE // ART PROTOCOL 1.4
+        </div>
+
+        <div style="display: flex; gap: 40px; margin-top: 50px; opacity: 0.3; font-size: 0.6rem; letter-spacing: 0.2em;">
+            <span>ARTIST IDENTITY</span>
+            <span>PROVENANCE</span>
+            <span>MARKET COMPS</span>
+        </div>
+    </main>
+
+    <a href="https://shop.fancyape.com" class="collections-bridge">Browse Collections →</a>
 
     <script>
-        const cursor = document.getElementById('cursor');
-        const glow = document.getElementById('glow');
-
-        document.addEventListener('mousemove', e => {
-            // Move Cursor
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        function startScan() {
+            const btn = document.querySelector('.secure-btn');
+            const input = document.getElementById('asset-input');
+            if(!input.value) return alert("System requires Asset ID or Image for Analysis.");
             
-            // Move Background Glow (with lag for smoothness)
-            glow.style.transform = `translate(${e.clientX - 300}px, ${e.clientY - 300}px)`;
-        });
-
-        // Interactive "Hiss" on links
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(5)';
-                cursor.style.background = 'white';
-            });
-            link.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.background = 'var(--accent)';
-            });
-        });
+            btn.innerHTML = "ANALYZING...";
+            btn.style.background = "#55daff";
+            
+            setTimeout(() => {
+                alert("INTEL RECOVERY COMPLETE: Asset verified at current floor.");
+                btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> #SECURE_SCAN';
+                btn.style.background = "#fff";
+            }, 3000);
+        }
     </script>
 </body>
 </html>
