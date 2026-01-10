@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fancy Ape™</title>
     <style>
-        /* Prevents white flashes by forcing black background immediately */
-        body, html { 
-            margin: 0; padding: 0; width: 100%; height: 100%; 
-            background: #000; overflow: hidden; 
-        }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
 
-        /* Video fills the screen at 45% brightness for a cinematic look */
+        /* Fallback: Shows hero-bg.jpg immediately if video is slow or blocked */
         #vid { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             object-fit: cover; z-index: -1; 
             opacity: 0.45;
-            background: #000;
+            background: #000 url('hero-bg.jpg') center/cover no-repeat;
         }
 
-        /* Subtle branding overlay */
         .portal-text {
             position: absolute; top: 50%; left: 50%; 
             transform: translate(-50%, -50%);
@@ -32,8 +27,8 @@
 </head>
 <body>
 
-    <video autoplay muted loop playsinline preload="auto" id="vid">
-        <source src="fave-bg.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="auto" id="vid" poster="hero-bg.jpg">
+        <source src="fave-bg.mp4?v=1" type="video/mp4">
     </video>
 
     <div class="portal-text">
@@ -41,15 +36,21 @@
     </div>
 
     <script>
-        // Force-play logic to bypass browser security blocks
+        // Force play and verify load status
         window.onload = function() {
             var v = document.getElementById('vid');
-            v.play().catch(function(e) {
-                console.log("Waiting for user interaction to play video...");
-            });
+            var promise = v.play();
+
+            if (promise !== undefined) {
+                promise.catch(error => {
+                    console.log("Autoplay prevented. Click to play.");
+                    // Fallback to show the background image at least
+                    v.style.opacity = "0.45";
+                });
+            }
         };
 
-        // iPhone fix: Video will trigger on the first screen touch
+        // iPhone fix: Unlock video on first tap
         window.addEventListener('touchstart', function() {
             document.getElementById('vid').play();
         }, {once: true});
