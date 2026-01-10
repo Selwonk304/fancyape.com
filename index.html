@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fancy Ape™ | Art & Intelligence Terminal</title>
+    <meta name="description" content="Where digital artists gain wall space and traditional artists gain a digital legacy.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&family=Bodoni+Moda:ital,wght@1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,13 +16,13 @@
         <source src="https://cdn.midjourney.com/video/79c96afd-9202-4bbb-bbde-424ddf2df0c6/2.mp4" type="video/mp4">
     </video>
 
-    <main class="terminal-hud">
+    <main class="terminal-hud" role="main">
         <h1 class="brand-reveal">Welcome to Fancy Ape™</h1>
 
         <div class="capsule-wrapper">
-            <div class="hud-stats">
-                <span class="cyan-glow">ⓘ ASSET INTELLIGENCE CONVICTION</span>
-                <span id="conviction-score" class="cyan-glow">20%</span>
+            <div style="display: flex; justify-content: space-between; font-size: 0.6rem; letter-spacing: 0.2em; font-weight: 800; margin-bottom: 12px; padding: 0 10px;">
+                <span style="color: var(--intel-blue);">ⓘ ASSET INTELLIGENCE CONVICTION</span>
+                <span id="conviction-score" style="color: var(--intel-blue); text-shadow: 0 0 12px var(--intel-blue);">20%</span>
             </div>
 
             <div class="fave-capsule">
@@ -28,9 +31,9 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
                 </div>
                 
-                <input type="text" placeholder="APPRAISE ARTWORK ASSET..." id="asset-input">
+                <input type="text" placeholder="APPRAISE ARTWORK ASSET..." id="asset-input" autocomplete="off">
                 
-                <button class="secure-scan" id="scan-trigger">
+                <button class="secure-scan" id="scan-trigger" type="button">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     #SECURE_SCAN
                 </button>
@@ -39,10 +42,11 @@
 
         <footer class="footer-protocol">
             <div class="status-indicator">INTELLIGENCE LAYER ACTIVE // ART PROTOCOL 1.4</div>
+            
             <nav class="bridge-nav">
                 <a href="https://shop.fancyape.com" class="bridge-link">COLLECTIONS</a>
-                <a href="#" class="bridge-link">PROVENANCE</a>
-                <a href="#" class="bridge-link">THE VAULT</a>
+                <a href="/provenance" class="bridge-link">PROVENANCE</a>
+                <a href="/vault" class="bridge-link">THE VAULT</a>
             </nav>
         </footer>
     </main>
@@ -50,18 +54,20 @@
     <script>
         const scanBtn = document.getElementById('scan-trigger');
         const scoreDisplay = document.getElementById('conviction-score');
-        const input = document.getElementById('asset-input');
 
         scanBtn.addEventListener('click', () => {
-            if(!input.value) return alert("ENTER ASSET DATA");
-            
             let count = 20;
+            const target = 94;
             scanBtn.innerText = "ANALYZING...";
             
             const interval = setInterval(() => {
-                if (count >= 94) {
+                if (count >= target) {
                     clearInterval(interval);
                     scanBtn.innerText = "#SCAN_COMPLETE";
+                    setTimeout(() => {
+                        alert("F.A.V.E. Intelligence Report: Asset Verified. Market Confidence: 94%. Click Collections to materialize.");
+                        scanBtn.innerText = "#SECURE_SCAN";
+                    }, 500);
                 } else {
                     count++;
                     scoreDisplay.innerText = count + "%";
