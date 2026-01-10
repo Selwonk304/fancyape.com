@@ -5,60 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fancy Ape™</title>
     <style>
-        /* 1. FORCE BLACK BACKGROUND: Prevents the "Black Screen" effect while loading */
+        /* Force a black canvas immediately */
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
 
-        /* 2. THE VIDEO: Using 'cover' as requested to ensure it fills the screen */
+        /* Use 'cover' to fill screen and 'opacity' to reveal */
         #vid { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             object-fit: cover; z-index: -1; 
             opacity: 0;
-            animation: fadeInVideo 2s ease-in forwards;
+            animation: forceFade 2s ease-in forwards;
             animation-delay: 0.5s;
         }
 
-        @keyframes fadeInVideo { to { opacity: 0.5; } }
+        @keyframes forceFade { to { opacity: 0.5; } }
 
-        /* 3. BRANDING & BUTTON: Pure CSS to bypass the 'eval' security block */
-        .content-overlay {
+        .overlay {
             position: absolute; top: 50%; left: 50%; 
             transform: translate(-50%, -50%);
             text-align: center; width: 100%;
-            opacity: 0;
-            animation: fadeInUI 1.5s ease-out forwards;
-            animation-delay: 1.2s;
         }
 
-        @keyframes fadeInUI { to { opacity: 1; } }
-
-        h1 { color: white; letter-spacing: 0.5em; font-weight: 300; margin-bottom: 40px; font-size: 1.5rem; }
-
+        h1 { color: white; letter-spacing: 0.5em; font-weight: 300; margin-bottom: 40px; }
+        
         .btn-shop {
-            display: inline-block;
-            padding: 18px 40px;
-            border: 1px solid #bc9c22; /* Fancy Ape Gold */
-            color: #bc9c22;
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.3em;
-            font-weight: bold;
-            transition: 0.3s;
-            background: rgba(0,0,0,0.4);
+            display: inline-block; padding: 18px 40px;
+            border: 1px solid #bc9c22; color: #bc9c22;
+            text-decoration: none; font-size: 0.8rem;
+            letter-spacing: 0.3em; background: rgba(0,0,0,0.4);
         }
-
-        .btn-shop:hover { background: #bc9c22; color: #000; }
     </style>
 </head>
 <body>
 
-    <video autoplay muted loop playsinline preload="auto" id="vid">
-        <source src="fave-bg.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline id="vid">
+        <source src="fave-bg.mp4?reload=1" type="video/mp4">
     </video>
 
-    <div class="content-overlay">
+    <div class="overlay">
         <h1>FANCY APE™</h1>
         <a href="https://shop.fancyape.com/shop-art" class="btn-shop">ENTER SHOP</a>
     </div>
 
+    <script>
+        /* This is the only script allowed; it forces the video to play */
+        window.addEventListener('load', function() {
+            var v = document.getElementById('vid');
+            v.play();
+        });
+        /* Essential for iPhone users */
+        window.addEventListener('touchstart', function() {
+            document.getElementById('vid').play();
+        }, {once: true});
+    </script>
 </body>
 </html>
