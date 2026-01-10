@@ -2,51 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fancy Ape™</title>
     <style>
-        /* Immediate black background to prevent white flashes */
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
-
-        /* VIDEO: Handled entirely by CSS to bypass the 'eval' security block */
+        body, html { margin: 0; padding: 0; background: #000; overflow: hidden; height: 100%; }
+        /* CSS-only reveal bypasses the 'eval' security block */
         #vid { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; z-index: -1; 
-            opacity: 0;
-            animation: fadeInVideo 2s ease-in forwards;
-            animation-delay: 0.5s;
+            object-fit: cover; opacity: 0;
+            animation: fadeIn 2s ease-in forwards; animation-delay: 1s;
         }
-
-        @keyframes fadeInVideo {
-            to { opacity: 0.5; }
+        @keyframes fadeIn { to { opacity: 0.5; } }
+        .text {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: white; font-family: sans-serif; letter-spacing: 0.5em;
+            opacity: 0; animation: fadeInText 1s ease-out forwards; animation-delay: 1.5s;
         }
-
-        /* Branding text that appears even if the video is still loading */
-        .portal-text {
-            position: absolute; top: 50%; left: 50%; 
-            transform: translate(-50%, -50%);
-            color: white; font-family: sans-serif;
-            letter-spacing: 0.5em; font-weight: 300;
-            opacity: 0;
-            text-align: center;
-            animation: fadeInText 1.5s ease-out forwards;
-            animation-delay: 1s;
-        }
-
-        @keyframes fadeInText {
-            to { opacity: 0.8; }
-        }
+        @keyframes fadeInText { to { opacity: 0.8; } }
     </style>
 </head>
 <body>
-
-    <video autoplay muted loop playsinline preload="auto" id="vid">
+    <video autoplay muted loop playsinline id="vid">
         <source src="fave-bg.mp4" type="video/mp4">
     </video>
-
-    <div class="portal-text">
-        <h1>FANCY APE™</h1>
-    </div>
-
+    <div class="text"><h1>FANCY APE™</h1></div>
 </body>
 </html>
