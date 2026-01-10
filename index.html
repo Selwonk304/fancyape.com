@@ -5,49 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fancy Ape™</title>
     <style>
-        :root { --gold: #bc9c22; }
-        body, html { margin: 0; padding: 0; background: #000; overflow: hidden; height: 100%; font-family: sans-serif; }
+        /* Immediate black background to prevent white flashes */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
 
-        /* FIXED ZOOM: 'contain' shows the full video frame */
+        /* VIDEO: Handled entirely by CSS to bypass the 'eval' security block */
         #vid { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: contain; z-index: -1; 
-            background: #000; opacity: 0;
-            animation: fadeIn 2s ease-in forwards;
-        }
-
-        @keyframes fadeIn { to { opacity: 1; } }
-
-        .overlay {
-            position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%);
-            text-align: center; width: 100%;
-        }
-
-        .btn-shop {
-            display: inline-block;
-            padding: 20px 50px;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: bold;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            transition: all 0.4s ease;
+            object-fit: cover; z-index: -1; 
             opacity: 0;
-            animation: btnFade 1s ease-out forwards 2s;
+            animation: fadeInVideo 2s ease-in forwards;
+            animation-delay: 0.5s;
         }
 
-        .btn-shop:hover {
-            background: var(--gold);
-            color: #000;
-            box-shadow: 0 0 30px rgba(188, 156, 34, 0.6);
-            transform: scale(1.05);
+        @keyframes fadeInVideo {
+            to { opacity: 0.5; }
         }
 
-        @keyframes btnFade { to { opacity: 1; } }
+        /* Branding text that appears even if the video is still loading */
+        .portal-text {
+            position: absolute; top: 50%; left: 50%; 
+            transform: translate(-50%, -50%);
+            color: white; font-family: sans-serif;
+            letter-spacing: 0.5em; font-weight: 300;
+            opacity: 0;
+            text-align: center;
+            animation: fadeInText 1.5s ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeInText {
+            to { opacity: 0.8; }
+        }
     </style>
 </head>
 <body>
@@ -56,22 +44,9 @@
         <source src="fave-bg.mp4" type="video/mp4">
     </video>
 
-    <div class="overlay">
-        <a href="https://shop.fancyape.com/shop-art" class="btn-shop">ENTER SHOP</a>
+    <div class="portal-text">
+        <h1>FANCY APE™</h1>
     </div>
 
-    <script>
-        // Emergency play for mobile devices
-        window.addEventListener('load', function() {
-            document.getElementById('vid').play().catch(function(e) {
-                console.log("Autoplay blocked. Tap to start.");
-            });
-        });
-        
-        // Touch to force-start video on iPhone
-        window.addEventListener('touchstart', function() {
-            document.getElementById('vid').play();
-        }, {once: true});
-    </script>
 </body>
 </html>
