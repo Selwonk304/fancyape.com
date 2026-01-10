@@ -3,72 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Fancy Ape™ | F.A.V.E. Intelligence</title>
+    <title>Fancy Ape™ | Art Intelligence</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
     <style>
         :root { --cyan: #22d3ee; --gold: #bc9c22; }
-        body, html { margin: 0; padding: 0; background: #000; font-family: sans-serif; overflow: hidden; color: #fff; }
-        
-        /* Fixed Video: No zoom, centered scene */
+        body, html { margin: 0; padding: 0; background: #000; font-family: sans-serif; overflow: hidden; color: #fff; height: 100%; }
+
+        /* VIDEO: Critical Autoplay Fixes */
         .video-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             object-fit: cover; object-position: center; z-index: -1; 
-            opacity: 0; /* Start invisible for the reveal */
-            background: #000;
+            opacity: 0; /* Start invisible to bypass the black-screen bug */
         }
 
-        .terminal-hud { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; position: relative; }
-        .brand-reveal { font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; margin-bottom: 5rem; opacity: 0; }
+        .terminal-hud { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 10; }
+        .brand-reveal { font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 4rem; opacity: 0; text-align: center; }
         
-        .capsule-wrapper { width: 90vw; max-width: 850px; display: flex; flex-direction: column; gap: 50px; align-items: center; opacity: 0; }
-        .fave-capsule { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 12px; display: flex; width: 100%; align-items: center; }
-        input { background: none; border: none; color: #fff; flex: 1; padding: 0 25px; font-size: 1.1rem; outline: none; }
-        .run-scan { background: #fff; color: #000; border: none; padding: 18px 45px; border-radius: 50px; font-weight: 800; cursor: pointer; }
-        .materialized-link { border: 1px solid var(--gold); padding: 18px 40px; text-decoration: none; color: var(--gold); font-size: 0.75rem; font-weight: 800; }
+        .capsule-wrapper { width: 92vw; max-width: 800px; display: flex; flex-direction: column; gap: 50px; opacity: 0; }
+        .fave-capsule { background: rgba(255,255,255,0.07); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 10px; display: flex; align-items: center; }
+        
+        input { background: none; border: none; color: #fff; flex: 1; padding: 0 20px; font-size: 1rem; outline: none; width: 100%; }
+        .run-scan { background: #fff; color: #000; border: none; padding: 15px 30px; border-radius: 50px; font-weight: 800; cursor: pointer; white-space: nowrap; }
+        
+        .materialized-link { align-self: center; border: 1px solid var(--gold); padding: 15px 35px; text-decoration: none; color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; }
     </style>
 </head>
 <body>
-    <video autoplay muted loop playsinline class="video-bg" id="bg-video">
+    <video autoplay muted loop playsinline preload="auto" class="video-bg" id="vid" onloadedmetadata="this.play();">
         <source src="https://cdn.midjourney.com/video/0f976d14-b21f-4cce-85ba-5fa029d4412d/3.mp4" type="video/mp4">
     </video>
 
     <main class="terminal-hud">
         <h1 class="brand-reveal">FANCY APE™ INTELLIGENCE</h1>
         <div class="capsule-wrapper">
-            <div style="display:flex; justify-content: space-between; width: 100%; font-size: 0.7rem; color: var(--cyan);">
+            <div style="display:flex; justify-content: space-between; padding: 0 20px; font-size: 0.7rem; color: var(--cyan); font-weight: 800;">
                 <span>ⓘ F.A.V.E. CONVICTION ENGINE</span>
                 <span id="score">--%</span>
             </div>
             <div class="fave-capsule">
-                <input type="text" placeholder="APPRAISE ARTIST OR WORK..." id="art-input">
-                <button class="run-scan" id="trigger">RUN_FAVE_SCAN</button>
+                <input type="text" placeholder="APPRAISE ARTIST..." id="art-input" autocomplete="off">
+                <button class="run-scan" id="trigger">RUN_SCAN</button>
             </div>
-            <a href="https://shop.fancyape.com" class="materialized-link">SEE THE MATERIALIZED COLLECTION →</a>
+            <a href="https://shop.fancyape.com" class="materialized-link">SEE THE COLLECTION →</a>
         </div>
     </main>
 
     <script>
-        // Use a CSP-Safe reveal pattern
-        window.onload = () => {
-            const video = document.getElementById('bg-video');
-            const tl = gsap.timeline();
+        // CSP-Safe Reveal Sequence
+        window.addEventListener('load', () => {
+            const vid = document.getElementById('vid');
+            // Force play again in case of iOS restriction
+            vid.play();
 
-            // Reveal video with a flicker effect after 1.5s dark start
-            tl.to(video, { opacity: 0.4, duration: 0.1, repeat: 3, yoyo: true, delay: 1.5 })
-              .to(video, { opacity: 0.5, duration: 1 })
-              .to(".brand-reveal", { opacity: 1, y: -20, duration: 1 }, "-=0.5")
+            const tl = gsap.timeline({ delay: 0.5 });
+            tl.to(vid, { opacity: 0.4, duration: 1.5 }) // Fade video in instead of brightness
+              .to(".brand-reveal", { opacity: 1, duration: 1 }, "-=0.5")
               .to(".capsule-wrapper", { opacity: 1, duration: 1 }, "-=0.8");
 
-            document.getElementById('trigger').onclick = () => {
-                if(!document.getElementById('art-input').value) return;
-                let obj = { val: 0 };
-                gsap.to(obj, { 
-                    val: 94.8, 
-                    duration: 3, 
-                    onUpdate: () => { document.getElementById('score').innerHTML = obj.val.toFixed(1) + "%"; } 
-                });
+            document.getElementById('trigger').onclick = function() {
+                const val = document.getElementById('art-input').value;
+                if(!val) return;
+                this.innerText = "SCANNING...";
+                let obj = { n: 0 };
+                gsap.to(obj, { n: 94.8, duration: 3, onUpdate: () => {
+                    document.getElementById('score').innerHTML = obj.n.toFixed(1) + "%";
+                }, onComplete: () => { this.innerText = "COMPLETE"; }});
             };
-        };
+        });
     </script>
 </body>
 </html>
