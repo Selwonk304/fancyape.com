@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fancy Ape™</title>
     <style>
-        /* Immediate black background to prevent white flashes */
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
+        /* 1. FORCE BLACK BACKGROUND: Prevents the "Black Screen" effect while loading */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
 
-        /* VIDEO: Handled entirely by CSS to bypass the 'eval' security block */
+        /* 2. THE VIDEO: Using 'cover' as requested to ensure it fills the screen */
         #vid { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             object-fit: cover; z-index: -1; 
@@ -17,25 +17,36 @@
             animation-delay: 0.5s;
         }
 
-        @keyframes fadeInVideo {
-            to { opacity: 0.5; }
-        }
+        @keyframes fadeInVideo { to { opacity: 0.5; } }
 
-        /* Branding text that appears even if the video is still loading */
-        .portal-text {
+        /* 3. BRANDING & BUTTON: Pure CSS to bypass the 'eval' security block */
+        .content-overlay {
             position: absolute; top: 50%; left: 50%; 
             transform: translate(-50%, -50%);
-            color: white; font-family: sans-serif;
-            letter-spacing: 0.5em; font-weight: 300;
+            text-align: center; width: 100%;
             opacity: 0;
-            text-align: center;
-            animation: fadeInText 1.5s ease-out forwards;
-            animation-delay: 1s;
+            animation: fadeInUI 1.5s ease-out forwards;
+            animation-delay: 1.2s;
         }
 
-        @keyframes fadeInText {
-            to { opacity: 0.8; }
+        @keyframes fadeInUI { to { opacity: 1; } }
+
+        h1 { color: white; letter-spacing: 0.5em; font-weight: 300; margin-bottom: 40px; font-size: 1.5rem; }
+
+        .btn-shop {
+            display: inline-block;
+            padding: 18px 40px;
+            border: 1px solid #bc9c22; /* Fancy Ape Gold */
+            color: #bc9c22;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            font-weight: bold;
+            transition: 0.3s;
+            background: rgba(0,0,0,0.4);
         }
+
+        .btn-shop:hover { background: #bc9c22; color: #000; }
     </style>
 </head>
 <body>
@@ -44,8 +55,9 @@
         <source src="fave-bg.mp4" type="video/mp4">
     </video>
 
-    <div class="portal-text">
+    <div class="content-overlay">
         <h1>FANCY APE™</h1>
+        <a href="https://shop.fancyape.com/shop-art" class="btn-shop">ENTER SHOP</a>
     </div>
 
 </body>
