@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Fancy Ape™ | Art Intelligence Terminal</title>
+    <title>Fancy Ape™ | F.A.V.E. Intelligence</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&family=Bodoni+Moda:ital,wght@1,700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -12,29 +12,34 @@
     <div class="cursor-outer"></div>
     <div class="cursor-inner"></div>
 
-    <video autoplay muted loop playsinline class="video-bg" poster="assets/hero-bg.jpg">
+    <video autoplay muted loop playsinline preload="auto" class="video-bg" poster="assets/hero-bg.jpg">
         <source src="https://cdn.midjourney.com/video/0f976d14-b21f-4cce-85ba-5fa029d4412d/3.mp4" type="video/mp4">
     </video>
 
     <main class="terminal-hud">
-        <h1 class="brand-reveal">WELCOME TO FANCY APE™</h1>
+        <h1 class="brand-reveal">FANCY APE™ INTELLIGENCE</h1>
+
         <div class="capsule-wrapper">
             <div class="hud-stats">
-                <span class="cyan-glow">ⓘ ASSET INTELLIGENCE CONVICTION</span>
-                <span id="conviction-score" class="cyan-glow">20%</span>
+                <span class="cyan-glow">ⓘ F.A.V.E. CONVICTION ENGINE</span>
+                <span id="conviction-score" class="cyan-glow">--%</span>
             </div>
+
             <div class="fave-capsule">
-                <div class="icon-tray">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                </div>
-                <input type="text" placeholder="APPRAISE ARTWORK..." id="asset-input" spellcheck="false">
-                <button class="secure-scan" id="scan-trigger">#SECURE_SCAN</button>
+                <input type="text" placeholder="APPRAISE ARTIST OR WORK..." id="asset-input" spellcheck="false">
+                <button class="secure-scan" id="scan-trigger">RUN_FAVE_SCAN</button>
+            </div>
+            
+            <div class="protocol-subtext">
+                <span class="cyan-glow">✦</span> PROTOCOL 1.4 // LIBERATING ARTISTS THROUGH DATA
             </div>
         </div>
+
         <footer class="footer-nav">
-            <a href="https://shop.fancyape.com" class="browse-btn">BROWSE COLLECTIONS →</a>
+            <a href="https://shop.fancyape.com" class="browse-btn">SEE THE MATERIALIZED COLLECTION →</a>
         </footer>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
