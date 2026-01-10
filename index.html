@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Fancy Ape™ | Art Intelligence</title>
+    <title>Fancy Ape™ | F.A.V.E. Intelligence</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         :root { --cyan: #22d3ee; --gold: #bc9c22; }
         body, html { margin: 0; padding: 0; background: #000; font-family: sans-serif; overflow: hidden; color: #fff; height: 100%; }
 
-        /* VIDEO: Critical Fixes for iPhone & CSP Blocks */
+        /* VIDEO: Safe-Layering for iOS & Desktop */
         .video-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; z-index: -1; 
-            opacity: 0; /* Start hidden to allow safe reveal */
+            object-fit: cover; object-position: center; z-index: -1; 
+            opacity: 0; /* JS will reveal this safely */
             background: #000;
         }
 
         .terminal-hud { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 10; padding: 20px; }
-        
         .brand-reveal { font-size: clamp(1.8rem, 6vw, 4rem); font-weight: 800; margin-bottom: 4.5rem; opacity: 0; text-align: center; }
         
-        /* 50px Gap Spacing for Overlap Fix */
+        /* 50px Logic Spacing to Prevent Overlap */
         .capsule-wrapper { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 50px; opacity: 0; }
         
         .fave-capsule { 
@@ -36,7 +35,7 @@
     </style>
 </head>
 <body>
-    <video autoplay muted loop playsinline preload="auto" class="video-bg" id="vid" oncanplay="this.play()" onloadedmetadata="this.play()">
+    <video autoplay muted loop playsinline preload="auto" class="video-bg" id="vid" onloadeddata="this.play();">
         <source src="https://cdn.midjourney.com/video/0f976d14-b21f-4cce-85ba-5fa029d4412d/3.mp4" type="video/mp4">
     </video>
 
@@ -59,24 +58,35 @@
     </main>
 
     <script>
-        // CSP-Safe Reveal: No eval, No complex filters
+        // CSP-SAFE REVEAL: Avoids 'eval' by using direct object references
         window.addEventListener('load', function() {
             const vid = document.getElementById('vid');
-            vid.play(); // Force play for mobile
-
             const tl = gsap.timeline();
-            // Using opacity instead of brightness to bypass GPU security blocks
-            tl.to(".video-bg", { opacity: 0.4, duration: 2, delay: 1 })
+
+            // Reveal Sequence
+            tl.to(vid, { opacity: 0.4, duration: 2, delay: 1 })
               .to(".brand-reveal", { opacity: 1, y: -20, duration: 1.2 }, "-=1.5")
               .to("#hud", { opacity: 1, duration: 1 }, "-=0.8");
 
+            // Safe Appraisal Scan
             document.getElementById('trigger').onclick = function() {
-                if(!document.getElementById('art-input').value) return;
+                const input = document.getElementById('art-input');
+                if(!input.value) return;
+                
                 this.innerText = "SCANNING...";
-                let obj = { n: 0 };
-                gsap.to(obj, { n: 94.8, duration: 3.5, onUpdate: () => {
-                    document.getElementById('score').innerHTML = obj.n.toFixed(1) + "%";
-                }, onComplete: () => { this.innerText = "COMPLETE"; }});
+                const scoreDisplay = document.getElementById('score');
+                const state = { n: 0 };
+                
+                gsap.to(state, { 
+                    n: 94.8, 
+                    duration: 3, 
+                    onUpdate: function() {
+                        scoreDisplay.textContent = state.n.toFixed(1) + "%";
+                    }, 
+                    onComplete: function() { 
+                        document.getElementById('trigger').innerText = "COMPLETE"; 
+                    }
+                });
             };
         });
     </script>
