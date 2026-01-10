@@ -9,82 +9,86 @@
         :root { --cyan: #22d3ee; --gold: #bc9c22; }
         body, html { margin: 0; padding: 0; background: #000; font-family: sans-serif; height: 100%; overflow: hidden; color: #fff; }
 
-        /* VIDEO: Pointing to your verified assets path */
+        /* VIDEO: Fail-safe reveal using CSS instead of JS */
         .video-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             object-fit: cover; object-position: center; z-index: -1; 
-            opacity: 0; /* JS will reveal safely */
             background: #000;
+            animation: safe-reveal 2s ease-in forwards;
+            animation-delay: 1s; /* The 1s dark start you wanted */
+            opacity: 0;
+        }
+
+        @keyframes safe-reveal {
+            to { opacity: 0.4; }
         }
 
         .terminal-hud { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 10; padding: 20px; }
-        .brand-reveal { font-size: clamp(1.8rem, 6vw, 4rem); font-weight: 800; margin-bottom: 4.5rem; opacity: 0; text-align: center; }
         
-        /* 50px Gap for Overlap Fix */
-        .capsule-wrapper { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 50px; opacity: 0; }
+        /* UI Reveal using CSS to bypass JS security blocks */
+        .brand-reveal { 
+            font-size: clamp(1.8rem, 6vw, 4rem); font-weight: 800; margin-bottom: 4.5rem; text-align: center;
+            opacity: 0; transform: translateY(20px);
+            animation: ui-reveal 1.2s ease-out forwards;
+            animation-delay: 1.5s;
+        }
+
+        .capsule-wrapper { 
+            width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 50px; 
+            opacity: 0;
+            animation: ui-reveal 1s ease-out forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes ui-reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .fave-capsule { background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 10px; display: flex; align-items: center; }
-        
         input { background: none; border: none; color: #fff; flex: 1; padding: 0 20px; font-size: 1.1rem; outline: none; min-width: 0; }
         .run-scan { background: #fff; color: #000; border: none; padding: 15px 35px; border-radius: 50px; font-weight: 800; cursor: pointer; white-space: nowrap; }
-        
         .materialized-link { align-self: center; border: 1px solid var(--gold); padding: 16px 40px; text-decoration: none; color: var(--gold); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.2em; }
     </style>
 </head>
 <body>
-    <video autoplay muted loop playsinline preload="auto" class="video-bg" id="vid" onloadedmetadata="this.play();">
+    <video autoplay muted loop playsinline preload="auto" class="video-bg" id="vid" onloadeddata="this.play();">
         <source src="assets/fave-bg.mp4" type="video/mp4">
     </video>
 
     <main class="terminal-hud">
         <h1 class="brand-reveal">FANCY APE™ INTELLIGENCE</h1>
-        
-        <div class="capsule-wrapper" id="hud">
+        <div class="capsule-wrapper">
             <div style="display:flex; justify-content: space-between; padding: 0 20px; font-size: 0.7rem; color: var(--cyan); font-weight: 800;">
                 <span>ⓘ F.A.V.E. CONVICTION ENGINE</span>
                 <span id="score">--%</span>
             </div>
-            
             <div class="fave-capsule">
                 <input type="text" placeholder="APPRAISE ARTIST..." id="art-input" autocomplete="off" spellcheck="false">
                 <button class="run-scan" id="trigger">RUN_SCAN</button>
             </div>
-            
             <a href="https://shop.fancyape.com" class="materialized-link">SEE THE COLLECTION →</a>
         </div>
     </main>
 
     <script>
-        // CSP-SAFE REVEAL: Prevents 'eval' blocks
-        window.addEventListener('load', function() {
-            const vid = document.getElementById('vid');
-            vid.play(); // Force play for iPhone
-
-            const tl = gsap.timeline();
-            // Reveal using opacity to bypass GPU security flags
-            tl.to(vid, { opacity: 0.4, duration: 2, delay: 1 })
-              .to(".brand-reveal", { opacity: 1, y: -20, duration: 1.2 }, "-=1.5")
-              .to("#hud", { opacity: 1, duration: 1 }, "-=0.8");
-
-            document.getElementById('trigger').onclick = function() {
-                const input = document.getElementById('art-input');
-                if(!input.value) return;
-                
-                this.innerText = "SCANNING...";
-                const scoreDisplay = document.getElementById('score');
-                const state = { n: 0 };
-                
-                gsap.to(state, { 
-                    n: 94.8, 
-                    duration: 3, 
-                    onUpdate: function() {
-                        scoreDisplay.textContent = state.n.toFixed(1) + "%";
-                    }, 
-                    onComplete: function() { 
-                        document.getElementById('trigger').innerText = "COMPLETE"; 
-                    }
-                });
-            };
-        });
+        // Only the button logic stays in JS
+        // This avoids triggering the 'eval' CSP block on page load
+        document.getElementById('trigger').onclick = function() {
+            const input = document.getElementById('art-input');
+            if(!input.value) return;
+            this.innerText = "SCANNING...";
+            const state = { n: 0 };
+            gsap.to(state, { 
+                n: 94.8, 
+                duration: 3, 
+                onUpdate: function() {
+                    document.getElementById('score').textContent = state.n.toFixed(1) + "%";
+                }, 
+                onComplete: function() { 
+                    document.getElementById('trigger').innerText = "COMPLETE"; 
+                }
+            });
+        };
     </script>
 </body>
 </html>
