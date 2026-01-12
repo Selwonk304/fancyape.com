@@ -7,286 +7,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet" />
     <style type="text/css">
         :root {
-            --obsidian: #050505;
-            --gold: #c5a059;
-            --dark-gold: #B8860B;
-            --sold-red: #8B0000;
-            --soft-gray: #FAFAFA;
-            --border: #EAEAEA;
-            --nav-height: 70px;
+            --obsidian: #050505; --gold: #c5a059; --dark-gold: #B8860B;
+            --sold-red: #8B0000; --soft-gray: #FAFAFA; --border: #EAEAEA; --nav-height: 70px;
         }
-
         * { box-sizing: border-box; }
-
-        body {
-            background-color: #FFFFFF;
-            color: var(--obsidian);
-            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            margin: 0; padding: 0; overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            height: var(--nav-height);
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            z-index: 1000;
-        }
-
+        body { background-color: #FFFFFF; color: var(--obsidian); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        /* NAVIGATION */
+        nav { position: fixed; top: 0; width: 100%; height: var(--nav-height); background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; z-index: 1000; }
         .nav-logo { font-weight: 800; letter-spacing: -1px; text-decoration: none; color: #000; font-size: 1.2rem; }
         .nav-links { display: flex; gap: 20px; }
-        .nav-links a { 
-            text-decoration: none; color: #666; font-size: 0.7rem; 
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-            transition: color 0.3s;
-        }
+        .nav-links a { text-decoration: none; color: #666; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--gold); }
 
-        /* --- MASTER HEADER SECTION --- */
+        /* MASTER HEADER */
         .fa-master-wrapper { padding: 120px 5% 60px; max-width: 1400px; margin: 0 auto; }
-        
         .fa-status-tag { display: inline-flex; align-items: center; background: #fdf8ee; padding: 6px 15px; font-family: monospace; font-size: 11px; letter-spacing: 1.5px; margin-bottom: 25px; color: #856404; border: 1px solid #ffeeba; }
         .fa-pulse { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; margin-right: 10px; animation: pulse-ani 2s infinite; }
         @keyframes pulse-ani { 0% { box-shadow: 0 0 0 0 rgba(197,160,89,0.7); } 70% { box-shadow: 0 0 0 10px rgba(197,160,89,0); } 100% { box-shadow: 0 0 0 0 rgba(197,160,89,0); } }
-
-        .fa-main-title { font-weight: 800; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: -0.05em; margin: 0 0 30px 0; line-height: 0.9; text-transform: uppercase; color: #111; }
-        
+        .fa-main-title { font-weight: 800; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: -0.05em; line-height: 0.9; margin-bottom: 30px; text-transform: uppercase; }
         .fa-vision-block { max-width: 850px; border-left: 3px solid var(--gold); padding-left: 20px; font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 40px; }
-        .fa-vision-block p { margin-bottom: 15px; }
-        .fa-vision-block strong { color: var(--obsidian); }
-
-        /* --- PROTOCOL BAR --- */
         .fa-protocol-alert { background: #f9f9f9; padding: 25px; border: 1px solid #eee; margin-bottom: 40px; border-radius: 4px; }
-        .fa-protocol-alert p { font-size: 13px; color: #555; margin-bottom: 15px; line-height: 1.6; }
-        .fa-early-link { 
-            font-size: 12px; font-weight: 800; color: #111; text-decoration: none; 
-            border-bottom: 2px solid var(--gold); padding-bottom: 2px;
-            cursor: pointer; transition: 0.3s;
-        }
-        .fa-early-link:hover { color: var(--gold); }
+        .fa-early-link { font-size: 12px; font-weight: 800; color: #111; text-decoration: none; border-bottom: 2px solid var(--gold); padding-bottom: 2px; cursor: pointer; }
 
-        /* --- TOOL GRID --- */
-        .fa-tool-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 40px 0; margin: 40px 0; }
-        .fa-tool-item { text-align: center; }
-        .fa-tool-icon { height: 45px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
-        .fa-tool-icon svg { height: 100%; width: auto; }
-        .fa-tool-item h3 { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #111; text-transform: uppercase; margin: 0; }
-
-        /* --- CATEGORY SECTIONS --- */
-        .category-section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+        /* CAROUSELS */
+        .category-section { padding: 80px 0; border-bottom: 1px solid var(--border); }
         .section-header { padding: 0 5%; max-width: 1400px; margin: 0 auto 40px; }
-        .section-title { font-size: 1.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .section-subtext { color: #888; font-size: 0.9rem; margin-top: 5px; }
-
-        /* --- CAROUSEL ENGINE --- */
+        .section-title { font-size: 1.6rem; font-weight: 800; text-transform: uppercase; }
         .carousel-container { overflow: hidden; }
         .carousel-track { display: flex; width: max-content; animation: scrollGallery 60s linear infinite; }
-        .carousel-track:hover { animation-play-state: paused; }
         @keyframes scrollGallery { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
         .card-wrapper { width: 420px; padding: 0 20px; text-decoration: none; color: inherit; display: block; }
-        .art-card {
-            height: 520px; background: var(--soft-gray); position: relative; 
-            overflow: hidden; border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .art-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .card-wrapper:hover .art-card { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .art-card { height: 520px; background: var(--soft-gray); position: relative; overflow: hidden; border-radius: 4px; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .art-card img { width: 100%; height: 100%; object-fit: cover; }
+        .card-wrapper:hover .art-card { transform: translateY(-10px); }
 
-        .badge {
-            position: absolute; top: 20px; left: 20px; background: #fff;
-            color: #000; font-size: 10px; font-weight: 800; padding: 6px 14px; border-radius: 50px; z-index: 10;
-        }
-
-        .art-meta { margin-top: 25px; padding: 0 5px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .art-name { font-weight: 800; font-size: 1rem; text-transform: uppercase; }
-        .price { color: var(--dark-gold); font-weight: 600; font-size: 0.95rem; }
-        .sold { color: var(--sold-red); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; }
-
-        /* --- VAULT (DARK MODE) --- */
-        .vault-section { background: #000; color: #fff; padding-top: 120px; }
-        .vault-section .section-title { color: #fff; }
-        .vault-section .art-card { box-shadow: none; border: 1px solid #222; opacity: 0.6; filter: grayscale(1); }
-
-        /* --- DISCOVERY HOOK --- */
-        .fa-discovery-hook { padding: 60px 5%; text-align: left; max-width: 1400px; margin: 0 auto; }
-        .fa-obsession-title { font-size: 20px; font-weight: 800; letter-spacing: 2px; margin-bottom: 5px; color: #111; text-transform: uppercase; }
-        .fa-obsession-sub { font-size: 14px; color: #777; }
-        .fa-arrow-container { width: 30px; height: 30px; margin-top: 15px; }
-        .fa-arrow-svg { width: 100%; height: 100%; animation: bounce-ani 2s infinite; }
-        @keyframes bounce-ani { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-8px);} 60% {transform: translateY(-4px);} }
-
-        /* --- SLIDE-OUT DRAWER --- */
-        #signup-drawer {
-            position: fixed; top: 0; right: -100%; width: 100%; max-width: 500px; height: 100%;
-            background: var(--obsidian); color: white; z-index: 2000; padding: 80px 50px;
-            transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-            display: flex; flex-direction: column;
-        }
+        /* DRAWER */
+        #signup-drawer { position: fixed; top: 0; right: -100%; width: 100%; max-width: 500px; height: 100%; background: var(--obsidian); color: white; z-index: 2000; padding: 80px 50px; transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1); display: flex; flex-direction: column; }
         #signup-drawer.active { right: 0; }
-        .drawer-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 1999; display: none;
-        }
+        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1999; display: none; }
         .drawer-overlay.active { display: block; }
-        .drawer-close { align-self: flex-end; cursor: pointer; color: var(--gold); font-family: monospace; font-size: 12px; letter-spacing: 2px; margin-bottom: 100px; }
-        #signup-drawer h2 { font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 30px; }
-        #signup-drawer input {
-            background: transparent; border: none; border-bottom: 2px solid #333;
-            padding: 20px 0; color: white; font-family: 'Inter'; font-size: 1.2rem; outline: none; transition: 0.3s;
-        }
-        #signup-drawer input:focus { border-bottom-color: var(--gold); }
-        .btn-secure { background: var(--gold); color: white; border: none; padding: 25px; margin-top: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; }
-
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .fa-tool-grid { grid-template-columns: 1fr 1fr; }
-            .card-wrapper { width: 320px; }
-            .art-card { height: 400px; }
-            .fa-main-title { font-size: 2.2rem; }
-        }
+        .drawer-close { align-self: flex-end; cursor: pointer; color: var(--gold); font-family: monospace; font-size: 12px; margin-bottom: 60px; }
+        #signup-drawer input { background: transparent; border: none; border-bottom: 2px solid #333; padding: 20px 0; color: white; font-size: 1.2rem; outline: none; width: 100%; margin-bottom: 20px; }
+        .btn-secure { background: var(--gold); color: white; border: none; padding: 25px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <nav>
     <a class="nav-logo" href="#">FANCY APE</a>
-    <div class="nav-links">
-        <a href="#faves">Faves</a> 
-        <a href="#unique">1:1</a> 
-        <a href="#limited">Limited</a> 
-        <a href="#digital">Digital</a> 
-        <a href="#open">Open</a> 
-        <a href="#vault">Vault</a>
-    </div>
+    <div class="nav-links"><a href="#faves">Faves</a> <a href="#vault">Vault</a></div>
 </nav>
 
 <div class="fa-master-wrapper">
     <div class="fa-status-tag"><span class="fa-pulse"></span> NOW STAGING: 2026 MASTERWORK SERIES</div>
     <h1 class="fa-main-title">MASTERWORK ORIGINALS.<br>LIMITED BY DESIGN.</h1>
-
     <div class="fa-vision-block">
-        <p><strong>I. PHYSICAL LIFE:</strong> We don't do mass-produced. Every piece is built only when you call for it, evolving a creator's vision into an archival-grade physical artifact.</p>
-        <p><strong>II. LIMITED RUNS:</strong> To maintain exclusivity, each series is produced in strictly limited cycles. Once a cycle closes, the acquisition window ends.</p>
-        <p><strong>III. MUSEUM STANDARDS:</strong> We back professional artists with heavy engineering to bring work into the real world with museum-grade precision.</p>
-        <p><strong>IV. SECURE TRANSIT:</strong> Respect the work. Every acquisition includes insured, global transit to ensure it hits your wall in gallery condition.</p>
+        <p><strong>I. PHYSICAL LIFE:</strong> Pieces built only when you call for them, evolving vision into archival-grade artifacts.</p>
+        <p><strong>II. LIMITED RUNS:</strong> Strictly limited cycles. Once a cycle closes, the window ends.</p>
     </div>
-
     <div class="fa-protocol-alert">
-        <p><strong>PROTOCOL UPDATE:</strong> We are currently onboarding new creators and optimizing high-fidelity production for <strong>Acrylic Trays, Metal Magnets, Yoga Mats, and Wood Prints</strong>. The catalog is evolving daily.</p>
+        <p><strong>PROTOCOL UPDATE:</strong> Optimizing production for <strong>Acrylic Trays, Metal Magnets, Yoga Mats, and Wood Prints</strong>.</p>
         <a class="fa-early-link" onclick="openDrawer()">SIGN UP FOR EARLY ACCESS, DISCOUNTS & DROPS</a>
-    </div>
-
-    <div class="fa-tool-grid">
-        <div class="fa-tool-item">
-            <div class="fa-tool-icon"><svg fill="none" stroke="#c5a059" stroke-width="1.2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></div>
-            <h3>LIVE AR PROJECTION</h3>
-        </div>
-        <div class="fa-tool-item">
-            <div class="fa-tool-icon"><svg fill="none" stroke="#c5a059" stroke-width="1.2" viewBox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="3"></circle></svg></div>
-            <h3>VIRTUAL WALL GALLERY</h3>
-        </div>
-        <div class="fa-tool-item">
-            <div class="fa-tool-icon"><svg fill="none" stroke="#c5a059" stroke-width="1.2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path d="M12 7v5l3 3"></path></svg></div>
-            <h3>360° MACRO INSPECTION</h3>
-        </div>
-        <div class="fa-tool-item">
-            <div class="fa-tool-icon"><svg fill="none" stroke="#c5a059" stroke-width="1.2" viewBox="0 0 24 24"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1"></path></svg></div>
-            <h3>INSURED GLOBAL TRANSIT</h3>
-        </div>
-    </div>
-
-    <div class="fa-discovery-hook">
-        <h2 class="fa-obsession-title">SELECT YOUR PIECE TO CUSTOMIZE</h2>
-        <p class="fa-obsession-sub">Explore hundreds of combinations across museum-grade wall art and apparel.</p>
-        <div class="fa-arrow-container">
-            <svg class="fa-arrow-svg" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="#c5a059" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-        </div>
     </div>
 </div>
 
-<section class="category-section" id="faves" style="background-color: var(--soft-gray);">
-    <div class="section-header">
-        <div class="section-title">Fancy Faves</div>
-        <div class="section-subtext">The community's most trending and loved pieces.</div>
-    </div>
+<section class="category-section" id="faves">
+    <div class="section-header"><div class="section-title">Fancy Faves</div></div>
     <div class="carousel-container">
         <div class="carousel-track">
-            <div class="card-wrapper">
-                <div class="art-card">
-                    <span class="badge" style="background: var(--gold); color:#fff;">MOST LOVED</span>
-                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=800" />
-                </div>
-                <div class="art-meta"><span class="art-name">Golden Era</span><span class="price">$5,100</span></div>
-            </div>
-            <div class="card-wrapper">
-                <div class="art-card">
-                    <span class="badge" style="background: var(--gold); color:#fff;">MOST LOVED</span>
-                    <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?auto=format&fit=crop&w=800" />
-                </div>
-                <div class="art-meta"><span class="art-name">Chrome Ape</span><span class="price">$4,200</span></div>
-            </div>
             <div class="card-wrapper">
                 <div class="art-card"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=800" /></div>
                 <div class="art-meta"><span class="art-name">Golden Era</span><span class="price">$5,100</span></div>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="category-section" id="unique">
-    <div class="section-header">
-        <div class="section-title">Unique Works (1:1)</div>
-        <div class="section-subtext">One of one originals. No reproductions will ever be made.</div>
-    </div>
-    <div class="carousel-container">
-        <div class="carousel-track" style="animation-direction: reverse;">
-            <div class="card-wrapper">
-                <div class="art-card"><span class="badge">AR VISION</span><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800" /></div>
-                <div class="art-meta"><span class="art-name">Void Study I</span><span class="price">$12,500</span></div>
             </div>
-            <div class="card-wrapper">
-                <div class="art-card"><span class="badge">AR VISION</span><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800" /></div>
-                <div class="art-meta"><span class="art-name">Gold Kinetic</span><span class="price">$15,000</span></div>
-            </div>
-            <div class="card-wrapper">
-                <div class="art-card"><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800" /></div>
-                <div class="art-meta"><span class="art-name">Void Study I</span><span class="price">$12,500</span></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="category-section vault-section" id="vault">
-    <div class="section-header">
-        <div class="section-title">The Vault</div>
-        <div class="section-subtext">Permanently held in private collections worldwide.</div>
-    </div>
-    <div class="carousel-container">
-        <div class="carousel-track">
-            <div class="card-wrapper">
-                <div class="art-card"><img src="https://images.unsplash.com/photo-1561214078-f3247647fc5e?auto=format&fit=crop&w=800" /></div>
-                <div class="art-meta"><span class="art-name">Ape Heritage I</span><span class="sold">SOLD</span></div>
-            </div>
-            <div class="card-wrapper">
-                <div class="art-card"><img src="https://images.unsplash.com/photo-1574367174387-474cac1ad047?auto=format&fit=crop&w=800" /></div>
-                <div class="art-meta"><span class="art-name">Ape Heritage II</span><span class="sold">SOLD</span></div>
-            </div>
-            <div class="card-wrapper">
-                <div class="art-card"><img src="https://images.unsplash.com/photo-1561214078-f3247647fc5e?auto=format&fit=crop&w=800" /></div>
-                <div class="art-meta"><span class="art-name">Ape Heritage I</span><span class="sold">SOLD</span></div>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -294,25 +88,14 @@
 <div id="signup-drawer">
     <div class="drawer-close" onclick="closeDrawer()">CLOSE // EXIT</div>
     <h2>SECURE EARLY ACCESS.</h2>
-    <p style="color: #666; font-size: 0.9rem; line-height: 1.6; margin-bottom: 40px;">
-        Join the protocol. Members receive 15-minute advanced notification on all Masterwork Drops and exclusive access to the Archive staging environment.
-    </p>
+    <p style="color: #666; font-size: 0.9rem; margin-bottom: 40px;">Join the protocol for advanced drop notification.</p>
     <input type="email" placeholder="EMAIL ADDRESS">
     <button class="btn-secure">Request Access</button>
 </div>
 
 <script>
-    function openDrawer() {
-        document.getElementById('signup-drawer').classList.add('active');
-        document.getElementById('overlay').classList.add('active');
-        document.body.style.overflow = 'hidden'; // Stop scroll
-    }
-
-    function closeDrawer() {
-        document.getElementById('signup-drawer').classList.remove('active');
-        document.getElementById('overlay').classList.remove('active');
-        document.body.style.overflow = 'auto'; // Restore scroll
-    }
+    function openDrawer() { document.getElementById('signup-drawer').classList.add('active'); document.getElementById('overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeDrawer() { document.getElementById('signup-drawer').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 </script>
 
 </body>
