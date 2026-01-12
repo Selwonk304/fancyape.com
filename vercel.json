@@ -1,13 +1,6 @@
 {
   "redirects": [
-    { 
-      "source": "/shop-art", 
-      "has": [
-        { "type": "host", "value": "shop.fancyape.com" }
-      ],
-      "destination": "https://fancyape.com/shop-art.html", 
-      "permanent": true 
-    },
+    { "source": "/shop-art", "destination": "/shop-art.html", "permanent": true },
     { "source": "/vault", "destination": "https://shop.fancyape.com/vault", "permanent": true },
     { "source": "/creators", "destination": "https://shop.fancyape.com/creators", "permanent": true },
     { "source": "/fancyapefavs", "destination": "https://shop.fancyape.com/fancyapefavs", "permanent": true },
