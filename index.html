@@ -4,11 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fancy Ape™</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet" />
     <style>
-        /* Pro Black Background */
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        :root {
+            --gold: #bc9c22;
+            --nav-height: 70px;
+        }
 
-        /* The Video: 'contain' ensures the whole art piece is visible without cropping */
+        /* Pro Black Background */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Inter', sans-serif; }
+
+        /* Transparent Sticky Nav */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            height: var(--nav-height);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 1000;
+        }
+
+        .nav-logo { font-weight: 800; letter-spacing: -1px; text-decoration: none; color: #fff; font-size: 1.2rem; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { 
+            text-decoration: none; color: #ccc; font-size: 0.7rem; 
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* The Video */
         #vid { 
             width: 100vw; 
             height: 100vh; 
@@ -24,23 +54,39 @@
 
         .btn-shop {
             display: inline-block; padding: 15px 40px;
-            border: 1px solid #bc9c22; color: #bc9c22;
-            text-decoration: none; font-family: sans-serif;
+            border: 1px solid var(--gold); color: var(--gold);
+            text-decoration: none;
             font-size: 0.8rem; letter-spacing: 0.3em; font-weight: bold;
             background: rgba(0,0,0,0.7); transition: 0.3s;
+            text-transform: uppercase;
         }
 
-        .btn-shop:hover { background: #bc9c22; color: #000; }
+        .btn-shop:hover { background: var(--gold); color: #000; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
+
+    <nav>
+        <a href="/" class="nav-logo">FANCY APE</a>
+        <div class="nav-links">
+            <a href="/fancyapefavs">Faves</a>
+            <a href="/the-archive">The Archive</a>
+            <a href="/crypto-editions">Digital</a>
+            <a href="/vault">The Vault</a>
+            <a href="/creators">Partnership</a>
+        </div>
+    </nav>
 
     <video autoplay muted loop playsinline id="vid">
         <source src="fave-bg.mp4" type="video/mp4">
     </video>
 
     <div class="overlay">
-        <a href="https://shop.fancyape.com/open-editions" class="btn-shop">ENTER SHOP</a>
+        <a href="/the-archive" class="btn-shop">ENTER THE ARCHIVE</a>
     </div>
 
     <script>
