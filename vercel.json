@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/fave", "destination": "https://fave-engine.vercel.app", "permanent": false },
     { "source": "/vault", "destination": "/#vault", "permanent": true },
     { "source": "/faves", "destination": "/#faves", "permanent": true },
     { "source": "/fancyapefavs", "destination": "/#faves", "permanent": true },
