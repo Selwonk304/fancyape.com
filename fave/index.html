@@ -1,1 +1,10 @@
-
+async function calculateValue() {
+    const input = document.getElementById('artifactInput').value;
+    // Point this to your separate fave-engine Vercel URL
+    const response = await fetch('https://your-fave-engine-url.vercel.app/api/valuate', {
+        method: 'POST',
+        body: JSON.stringify({ description: input })
+    });
+    const data = await response.json();
+    // Show the Sotheby's-level appraisal result
+}
