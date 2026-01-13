@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Archive | Fancy Ape</title>
+    <title>The Archive | Fancy Ape Boutique</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet" />
     <style type="text/css">
         :root {
@@ -12,27 +12,29 @@
             --sold-red: #8B0000;
             --soft-gray: #FAFAFA;
             --border: #EAEAEA;
-            --nav-height: 70px;
+            --nav-height: 80px;
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        * { box-sizing: border-box; }
-
+        /* --- GLOBAL RESET --- */
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: #FFFFFF;
             color: var(--obsidian);
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0; overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         section { scroll-margin-top: var(--nav-height); }
 
+        /* --- NAVIGATION --- */
         nav {
             position: fixed;
             top: 0; width: 100%;
             height: var(--nav-height);
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -41,76 +43,84 @@
             z-index: 1000;
         }
 
-        .nav-logo { font-weight: 800; letter-spacing: -1px; text-decoration: none; color: #000; font-size: 1.2rem; }
-        .nav-links { display: flex; gap: 20px; }
+        .nav-logo { font-weight: 800; letter-spacing: -1.5px; text-decoration: none; color: #000; font-size: 1.4rem; }
+        .nav-links { display: flex; gap: 25px; }
         .nav-links a { 
-            text-decoration: none; color: #666; font-size: 0.7rem; 
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            text-decoration: none; color: #666; font-size: 0.75rem; 
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
             transition: color 0.3s;
         }
         .nav-links a:hover { color: var(--gold); }
 
-        header { padding: 160px 5% 80px; text-align: left; max-width: 1400px; margin: 0 auto; }
-        h1 { font-weight: 800; font-size: clamp(3.5rem, 10vw, 7rem); letter-spacing: -0.05em; margin: 0; line-height: 0.85; }
-        .hero-sub { color: #888; margin-top: 30px; font-size: 1.2rem; max-width: 600px; line-height: 1.4; }
+        /* --- HERO --- */
+        header { padding: 200px 5% 100px; text-align: left; max-width: 1400px; margin: 0 auto; }
+        h1 { font-weight: 800; font-size: clamp(4rem, 12vw, 9rem); letter-spacing: -0.06em; margin: 0; line-height: 0.8; text-transform: uppercase; }
+        .hero-sub { color: #888; margin-top: 40px; font-size: 1.3rem; max-width: 650px; font-weight: 300; }
 
         .cta-main {
-            display: inline-block; margin-top: 30px; padding: 18px 45px;
+            display: inline-block; margin-top: 40px; padding: 22px 55px;
             background: var(--obsidian); color: #fff; text-decoration: none;
-            font-weight: 800; font-size: 0.75rem; letter-spacing: 2px;
-            text-transform: uppercase; border-radius: 2px; transition: transform 0.3s;
+            font-weight: 800; font-size: 0.8rem; letter-spacing: 3px;
+            text-transform: uppercase; border-radius: 0px; transition: var(--transition);
         }
-        .cta-main:hover { transform: translateY(-3px); background: var(--gold); }
+        .cta-main:hover { transform: translateY(-5px); background: var(--gold); }
 
+        /* --- TRUST GRID --- */
         .trust-grid { 
             display: grid; grid-template-columns: repeat(4, 1fr); 
-            background: var(--obsidian); margin: 0 20px; border-radius: 4px;
+            background: var(--obsidian); margin: 0 20px;
         }
-        .trust-item { padding: 40px 20px; text-align: center; border-right: 1px solid #1a1a1a; }
+        .trust-item { padding: 50px 25px; text-align: center; border-right: 1px solid #1a1a1a; }
         .trust-item:last-child { border: none; }
-        .trust-item h3 { font-size: 0.65rem; letter-spacing: 2px; color: var(--gold); margin-bottom: 8px; text-transform: uppercase; }
-        .trust-item p { font-size: 0.8rem; color: #888; margin: 0; font-weight: 300; }
+        .trust-item h3 { font-size: 0.7rem; letter-spacing: 3px; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; }
+        .trust-item p { font-size: 0.85rem; color: #777; margin: 0; font-weight: 300; }
 
-        .category-section { padding: 120px 0; border-bottom: 1px solid var(--border); }
-        .section-header { padding: 0 5%; max-width: 1400px; margin: 0 auto 50px; }
-        .section-title { font-size: 2.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
-        .section-subtext { color: #888; font-size: 1rem; margin-top: 10px; font-weight: 300; }
+        /* --- CATEGORY SECTIONS --- */
+        .category-section { padding: 140px 0; border-bottom: 1px solid var(--border); }
+        .section-header { padding: 0 5%; max-width: 1400px; margin: 0 auto 60px; }
+        .section-title { font-size: 2.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: -1.5px; }
+        .section-subtext { color: #888; font-size: 1.1rem; margin-top: 15px; font-weight: 300; }
 
+        /* --- CAROUSEL TRACKING --- */
         .carousel-container { width: 100%; overflow: hidden; position: relative; }
-        .carousel-track { display: flex; width: max-content; animation: scrollGallery 40s linear infinite; will-change: transform; }
+        .carousel-track { display: flex; width: max-content; animation: scrollGallery 45s linear infinite; will-change: transform; }
         .carousel-track:hover { animation-play-state: paused; }
 
-        .card-wrapper { width: 450px; padding: 0 20px; text-decoration: none; color: inherit; display: block; }
-        .art-card {
-            height: 550px; background: var(--soft-gray); position: relative; 
-            overflow: hidden; border-radius: 2px;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        .card-wrapper { width: 480px; padding: 0 25px; text-decoration: none; color: inherit; display: block; }
+        .art-card { height: 600px; background: var(--soft-gray); position: relative; overflow: hidden; transition: var(--transition); }
+        .art-card img { 
+            width: 100%; height: 100%; object-fit: cover; display: block; 
+            transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            user-drag: none; -webkit-user-drag: none;
         }
-        .art-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .card-wrapper:hover .art-card { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+        .card-wrapper:hover .art-card { transform: translateY(-15px); box-shadow: 0 40px 80px rgba(0,0,0,0.12); }
+        .card-wrapper:hover .art-card img { transform: scale(1.08); }
 
         .badge {
-            position: absolute; top: 20px; left: 20px; background: #fff;
-            color: #000; font-size: 10px; font-weight: 800; padding: 6px 14px; border-radius: 50px; z-index: 10;
-            text-transform: uppercase; letter-spacing: 1px;
+            position: absolute; top: 30px; left: 30px; background: #fff;
+            color: #000; font-size: 10px; font-weight: 800; padding: 8px 18px; 
+            z-index: 10; text-transform: uppercase; letter-spacing: 2px;
         }
 
-        .art-meta { margin-top: 25px; padding: 0 5px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .art-name { font-weight: 800; font-size: 1.1rem; text-transform: uppercase; }
-        .price { color: var(--gold); font-weight: 600; font-size: 1rem; }
+        .art-meta { margin-top: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .art-name { font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: -0.5px; }
+        .price { color: var(--gold); font-weight: 600; font-size: 1.1rem; }
         .sold { color: var(--sold-red); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; }
 
+        /* --- THE VAULT --- */
         .vault-section { background: #000; color: #fff; border-bottom: none; }
         .vault-section .section-title { color: #fff; }
-        .vault-section .art-card { background: #111; opacity: 0.5; border: 1px solid #222; }
+        .vault-section .art-card { opacity: 0.4; filter: grayscale(100%); }
+        .vault-section .art-card:hover { opacity: 0.8; filter: grayscale(0%); }
 
         @keyframes scrollGallery { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .trust-grid { grid-template-columns: 1fr 1fr; }
-            .card-wrapper { width: 320px; }
-            .art-card { height: 400px; }
+            h1 { font-size: 5rem; }
+            .card-wrapper { width: 340px; }
+            .art-card { height: 450px; }
         }
     </style>
 </head>
@@ -120,69 +130,81 @@
     <a href="#" class="nav-logo">FANCY APE</a>
     <div class="nav-links">
         <a href="#faves">Faves</a>
-        <a href="#unique">1:1</a>
+        <a href="#unique">1:1 Originals</a>
         <a href="#limited">Limited</a>
-        <a href="#digital">Digital</a>
-        <a href="#open">Open</a>
+        <a href="#digital">Digital Editions</a>
+        <a href="#open">Open Editions</a>
         <a href="#vault">Vault</a>
     </div>
 </nav>
 
 <header>
     <h1>THE<br>ARCHIVE.</h1>
-    <p class="hero-sub">Curated masterworks for the modern collector. From physical canvas to 8K digital assets, we bridge the gap between luxury and disruption.</p>
-    <a href="#unique" class="cta-main">Explore Originals</a>
+    <p class="hero-sub">Curated masterworks for the modern collector. From physical canvas to 8K digital assets.</p>
+    <a href="#unique" class="cta-main">Enter Collection</a>
 </header>
 
 <section class="trust-grid">
     <div class="trust-item"><h3>Reality</h3><p>AR Spatial Preview</p></div>
     <div class="trust-item"><h3>Authentic</h3><p>Verified Provenance</p></div>
-    <div class="trust-item"><h3>Logistics</h3><p>Global Insured Shipping</p></div>
-    <div class="trust-item"><h3>Service</h3><p>24/7 Elite Concierge</p></div>
+    <div class="trust-item"><h3>Logistics</h3><p>Global Insured</p></div>
+    <div class="trust-item"><h3>Service</h3><p>24/7 Concierge</p></div>
 </section>
 
 <section id="faves" class="category-section" style="background-color: var(--soft-gray);">
     <div class="section-header">
-        <div class="section-title">Fancy Ape Faves</div>
-        <div class="section-subtext">Community-voted grails and trending acquisitions.</div>
+        <div class="section-title">Faves</div>
+        <div class="section-subtext">The collection's most coveted community grails.</div>
     </div>
     <div class="carousel-container">
         <div class="carousel-track">
-            <div class="card-wrapper"><div class="art-card"><span class="badge" style="background: var(--gold); color:#fff;">MOST LOVED</span><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Golden Era</span><span class="price">$5,100</span></div></div>
-            <div class="card-wrapper"><div class="art-card"><span class="badge" style="background: var(--gold); color:#fff;">MOST LOVED</span><img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Chrome Ape</span><span class="price">$4,200</span></div></div>
-            <div class="card-wrapper"><div class="art-card"><span class="badge" style="background: var(--gold); color:#fff;">MOST LOVED</span><img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Abstract Ape</span><span class="price">$3,800</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><span class="badge">Trending</span><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Golden Era</span><span class="price">$5,100</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Chrome Ape</span><span class="price">$4,200</span></div></div>
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Golden Era</span><span class="price">$5,100</span></div></div>
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Chrome Ape</span><span class="price">$4,200</span></div></div>
-            <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Abstract Ape</span><span class="price">$3,800</span></div></div>
         </div>
     </div>
 </section>
 
 <section id="unique" class="category-section">
     <div class="section-header">
-        <div class="section-title">Unique Works (1:1)</div>
-        <div class="section-subtext">Original singular masterworks. No reproductions will ever exist.</div>
+        <div class="section-title">Unique Works (1:1s)</div>
+        <div class="section-subtext">One-of-one originals. Pure disruption on canvas.</div>
     </div>
     <div class="carousel-container">
         <div class="carousel-track" style="animation-direction: reverse;">
-            <div class="card-wrapper"><div class="art-card"><span class="badge">AR VISION</span><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Void Study I</span><span class="price">$12,500</span></div></div>
-            <div class="card-wrapper"><div class="art-card"><span class="badge">AR VISION</span><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Gold Kinetic</span><span class="price">$15,000</span></div></div>
-            <div class="card-wrapper"><div class="art-card"><span class="badge">AR VISION</span><img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Obsidian Mask</span><span class="price">$18,200</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><span class="badge">Original</span><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Void Study I</span><span class="price">$12,500</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Gold Kinetic</span><span class="price">$15,000</span></div></div>
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Void Study I</span><span class="price">$12,500</span></div></div>
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Gold Kinetic</span><span class="price">$15,000</span></div></div>
-            <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Obsidian Mask</span><span class="price">$18,200</span></div></div>
         </div>
     </div>
 </section>
-<section id="digital" class="category-section">
+
+<section id="limited" class="category-section">
     <div class="section-header">
-        <div class="section-title">Digital Editions</div>
-        <div class="section-subtext">8K assets optimized for digital displays and virtual spaces.</div>
+        <div class="section-title">Limited Editions</div>
+        <div class="section-subtext">Serialized museum-grade prints. Numbered and signed.</div>
     </div>
     <div class="carousel-container">
         <div class="carousel-track">
-            <div class="card-wrapper"><div class="art-card"><span class="badge" style="background: #0070f3; color:#fff;">8K DOWNLOAD</span><img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Cyber One</span><span class="price">$400</span></div></div>
-            <div class="card-wrapper"><div class="art-card"><span class="badge" style="background: #0070f3; color:#fff;">8K DOWNLOAD</span><img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Cyber Two</span><span class="price">$400</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><span class="badge">LTD /50</span><img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Neon Genesis</span><span class="price">$1,200</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1506792006437-256b665541e2?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Fragment A</span><span class="price">$1,200</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Neon Genesis</span><span class="price">$1,200</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1506792006437-256b665541e2?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Fragment A</span><span class="price">$1,200</span></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="digital" class="category-section">
+    <div class="section-header">
+        <div class="section-title">Digital Editions</div>
+        <div class="section-subtext">8K native files optimized for digital displays.</div>
+    </div>
+    <div class="carousel-container">
+        <div class="carousel-track" style="animation-direction: reverse;">
+            <div class="card-wrapper"><div class="art-card"><span class="badge">8K Asset</span><img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Cyber One</span><span class="price">$400</span></div></div>
+            <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Cyber Two</span><span class="price">$400</span></div></div>
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Cyber One</span><span class="price">$400</span></div></div>
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Cyber Two</span><span class="price">$400</span></div></div>
         </div>
@@ -192,10 +214,10 @@
 <section id="open" class="category-section">
     <div class="section-header">
         <div class="section-title">Open Editions</div>
-        <div class="section-subtext">Accessible entries for emerging collectors.</div>
+        <div class="section-subtext">High-fidelity entry points for emerging collectors.</div>
     </div>
     <div class="carousel-container">
-        <div class="carousel-track" style="animation-direction: reverse;">
+        <div class="carousel-track">
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1551918120-9739cb430c6d?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Mono 01</span><span class="price">$250</span></div></div>
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Mono 02</span><span class="price">$250</span></div></div>
             <div class="card-wrapper"><div class="art-card"><img src="https://images.unsplash.com/photo-1551918120-9739cb430c6d?auto=format&fit=crop&w=800" /></div><div class="art-meta"><span class="art-name">Mono 01</span><span class="price">$250</span></div></div>
@@ -206,8 +228,8 @@
 
 <section id="vault" class="category-section vault-section">
     <div class="section-header">
-        <div class="section-title">The Vault</div>
-        <div class="section-subtext">Permanently held in private collections worldwide.</div>
+        <div class="section-title">Vault</div>
+        <div class="section-subtext">Sold works permanently held in private collections.</div>
     </div>
     <div class="carousel-container">
         <div class="carousel-track" style="animation-duration: 60s;">
@@ -219,8 +241,8 @@
     </div>
 </section>
 
-<footer style="padding: 100px 5%; text-align: center; border-top: 1px solid var(--border); font-size: 0.7rem; letter-spacing: 2px; color: #999;">
-    &copy; 2026 FANCY APE | THE ARCHIVE v2.0
+<footer style="padding: 100px 5%; text-align: center; border-top: 1px solid var(--border); font-size: 0.75rem; letter-spacing: 2px; color: #999; text-transform: uppercase;">
+    &copy; 2026 FANCY APE CREATIVE GROUP | ALL RIGHTS RESERVED
 </footer>
 
 </body>
