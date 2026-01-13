@@ -1,8 +1,11 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/vault", "destination": "https://shop.fancyape.com/vault", "permanent": true },
-    { "source": "/creators", "destination": "https://shop.fancyape.com/creators", "permanent": true },
-    { "source": "/fancyapefavs", "destination": "https://shop.fancyape.com/fancyapefavs", "permanent": true },
-    { "source": "/crypto-editions", "destination": "https://shop.fancyape.com/crypto-editions", "permanent": true }
+    { "source": "/vault", "destination": "/#vault", "permanent": true },
+    { "source": "/faves", "destination": "/#faves", "permanent": true },
+    { "source": "/fancyapefavs", "destination": "/#faves", "permanent": true },
+    { "source": "/crypto-editions", "destination": "/#digital", "permanent": true },
+    { "source": "/creators", "destination": "https://shop.fancyape.com/creators", "permanent": true }
   ]
 }
