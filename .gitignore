@@ -1,0 +1,11 @@
+# Ignore system junk
+.DS_Store
+Thumbs.db
+
+# Ignore Vercel logs and local folders
+.vercel
+node_modules/
+dist/
+
+# Ignore secret files
+.env
