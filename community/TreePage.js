@@ -46,7 +46,24 @@ const ArtistTree = () => {
           </div>
         ))}
       </div>
-
+{/* THE TRUNK: The Door to the Inner Circle */}
+<div className="group relative cursor-pointer" onClick={() => window.location.href='/community/circle'}>
+  {/* Glowing Door Effect */}
+  <div className="w-16 h-24 bg-slate-900 border-2 border-cyan-500/50 rounded-t-full 
+                  group-hover:border-yellow-400 group-hover:shadow-[0_0_30px_rgba(250,204,21,0.6)] 
+                  transition-all duration-500 flex items-center justify-center">
+    <span className="text-[10px] text-cyan-200 group-hover:text-yellow-400 font-bold uppercase tracking-tighter">
+      Enter<br/>Circle
+    </span>
+  </div>
+  
+  {/* The Root Connection */}
+  <div className="w-1 bg-gradient-to-b from-cyan-500 to-transparent h-20 mx-auto"></div>
+  
+  <div className="absolute top-1/2 -left-24 w-48 text-center font-bold tracking-widest text-cyan-200 opacity-50">
+    INNER CIRCLE
+  </div>
+</div>
       <footer className="mt-20 text-slate-500 text-[10px]">
         POWERED BY GITHUB & VERCEL
       </footer>
