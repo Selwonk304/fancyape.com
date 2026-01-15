@@ -2,17 +2,12 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/biosphere", "destination": "/community/index.html" }
+    { "source": "/biosphere", "destination": "/community/index.html" },
+    { "source": "/art", "destination": "/index.html" }
   ],
   "redirects": [
-    { "source": "/fave", "destination": "https://fave-engine.vercel.app", "permanent": false },
-    { "source": "/vault", "destination": "/#vault", "permanent": true },
-    { "source": "/faves", "destination": "/#faves", "permanent": true },
-    { "source": "/fancyapefavs", "destination": "/#faves", "permanent": true },
-    { "source": "/crypto-editions", "destination": "/#digital", "permanent": true },
-    { "source": "/creators", "destination": "/biosphere", "permanent": true },
-    { "source": "/community", "destination": "/biosphere", "permanent": true },
-    { "source": "/community/circle", "destination": "/inner-circle", "permanent": false },
-    { "source": "/inner-circle", "destination": "https://shop.fancyape.com/exclusive-deals", "permanent": false }
+    { "source": "/open-editions", "destination": "https://shop.fancyape.com/open-editions", "permanent": true },
+    { "source": "/limited-editions", "destination": "https://shop.fancyape.com/limited-editions", "permanent": true },
+    { "source": "/vault", "destination": "/#vault", "permanent": true }
   ]
 }
