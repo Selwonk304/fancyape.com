@@ -7,6 +7,9 @@
     { "source": "/faves", "destination": "/#faves", "permanent": true },
     { "source": "/fancyapefavs", "destination": "/#faves", "permanent": true },
     { "source": "/crypto-editions", "destination": "/#digital", "permanent": true },
-    { "source": "/creators", "destination": "https://shop.fancyape.com/creators", "permanent": true }
+    { "source": "/creators", "destination": "/community", "permanent": true },
+    { "source": "/community", "destination": "/community/TreePage", "permanent": true },
+    { "source": "/community/circle", "destination": "/inner-circle", "permanent": false },
+    { "source": "/inner-circle", "destination": "https://shop.fancyape.com/exclusive-deals", "permanent": false }
   ]
 }
