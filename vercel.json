@@ -2,8 +2,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/biosphere", "destination": "/community/index.html" },
-    { "source": "/art", "destination": "/index.html" }
+    { "source": "/biosphere", "destination": "/biosphere/index.html" },
+    { "source": "/art", "destination": "/art/index.html" }
   ],
   "redirects": [
     { "source": "/open-editions", "destination": "https://that.fancyape.com/open-editions", "permanent": true },
