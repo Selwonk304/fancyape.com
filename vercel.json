@@ -6,8 +6,8 @@
     { "source": "/art", "destination": "/index.html" }
   ],
   "redirects": [
-    { "source": "/open-editions", "destination": "https://shop.fancyape.com/open-editions", "permanent": true },
-    { "source": "/limited-editions", "destination": "https://shop.fancyape.com/limited-editions", "permanent": true },
+    { "source": "/open-editions", "destination": "https://that.fancyape.com/open-editions", "permanent": true },
+    { "source": "/limited-editions", "destination": "https://that.fancyape.com/limited-editions", "permanent": true },
     { "source": "/vault", "destination": "/#vault", "permanent": true }
   ]
 }
