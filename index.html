@@ -4,75 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fancy Ape™</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;900&display=swap" rel="stylesheet" />
     <style>
-        :root {
-            --gold: #bc9c22;
-        }
+        :root { --gold: #bc9c22; }
 
-        /* Pro Black Background */
         body, html { 
-            margin: 0; 
-            padding: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: #000; 
-            overflow: hidden; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            background: #000; overflow: hidden; display: flex; 
+            justify-content: center; align-items: center; 
             font-family: 'Inter', sans-serif; 
         }
 
-        /* The Video: 'contain' ensures the whole art piece is visible without cropping */
-        #vid { 
-            width: 100vw; 
-            height: 100vh; 
-            object-fit: contain; 
-            z-index: 1;
+        /* Glitch Effect Animation */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-5px, 5px); filter: hue-rotate(90deg) brightness(1.5); }
+            40% { transform: translate(5px, -5px); filter: invert(1); }
+            60% { transform: translate(-10px, 0); opacity: 0.8; }
+            80% { transform: translate(10px, 5px); filter: contrast(2); }
+            100% { transform: translate(0); }
         }
 
-        /* Overlay Button */
-        .overlay {
-            position: absolute; 
-            bottom: 10%; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            z-index: 10;
+        .glitch-active { animation: glitch 0.25s linear infinite; }
+
+        header {
+            position: absolute; top: 0; width: 100%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 40px 60px; box-sizing: border-box; z-index: 20;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
 
-        .btn-shop {
-            display: inline-block; 
-            padding: 15px 40px;
-            border: 1px solid var(--gold); 
+        /* Refined Brand Font */
+        .logo {
             color: var(--gold);
-            text-decoration: none; 
-            font-size: 0.8rem; 
-            letter-spacing: 0.3em; 
-            font-weight: bold;
-            background: rgba(0,0,0,0.7); 
-            transition: 0.3s;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            font-size: 1.5rem;
+            text-decoration: none;
             text-transform: uppercase;
         }
 
-        .btn-shop:hover { 
-            background: var(--gold); 
-            color: #000; 
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a {
+            color: #fff; text-decoration: none; font-size: 0.7rem; 
+            letter-spacing: 0.2em; text-transform: uppercase; 
+            opacity: 0.5; transition: 0.3s; font-weight: 500;
+        }
+
+        #vid { width: 100vw; height: 100vh; object-fit: contain; z-index: 1; transition: 0.1s; }
+
+        .overlay { position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); z-index: 10; }
+
+        .btn-shop {
+            display: inline-block; padding: 15px 40px; border: 1px solid var(--gold); 
+            color: var(--gold); text-decoration: none; font-size: 0.8rem; 
+            letter-spacing: 0.3em; font-weight: bold; background: rgba(0,0,0,0.7); 
+            transition: 0.3s; text-transform: uppercase; cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 20px; flex-direction: column; gap: 20px; }
+            .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
-<body>
+<body id="main-body">
+
+    <header>
+        <a href="#" class="logo glitch-trigger">FANCY APE™</a>
+        <nav class="nav-links">
+            <a href="#" class="glitch-trigger">Art</a>
+            <a href="#" class="glitch-trigger">F.A.V.E</a>
+            <a href="#" class="glitch-trigger">Biosphere</a>
+            <a href="#" class="glitch-trigger">About</a>
+        </nav>
+    </header>
 
     <video autoplay muted loop playsinline id="vid">
         <source src="fave-bg.mp4" type="video/mp4">
     </video>
 
     <div class="overlay">
-        <a href="/art" class="btn-shop">ENTER STUDIO</a>
+        <a href="#" class="btn-shop glitch-trigger">STUDIO OPENING SOON</a>
     </div>
 
     <script>
-        // Force-play for mobile browsers
+        const triggers = document.querySelectorAll('.glitch-trigger');
+        const body = document.getElementById('main-body');
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                body.classList.add('glitch-active');
+                setTimeout(() => {
+                    body.classList.remove('glitch-active');
+                }, 300); // Duration of the glitch
+            });
+        });
+
         window.addEventListener('touchstart', function() {
             document.getElementById('vid').play();
         }, {once: true});
