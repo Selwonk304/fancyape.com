@@ -24,9 +24,9 @@
             70% { transform: translate(8px, 3px); filter: contrast(3); }
             100% { transform: translate(0); }
         }
-
         .glitch-active { animation: glitch 0.2s linear infinite; }
 
+        /* Header & Logo */
         header {
             position: absolute; top: 0; width: 100%; 
             display: flex; justify-content: space-between; align-items: center; 
@@ -34,14 +34,9 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
 
-        /* Updated Heavy Logo Font */
         .logo {
-            color: var(--gold);
-            font-weight: 900;
-            letter-spacing: -0.05em; /* Tighter for that pro look */
-            font-size: 1.6rem;
-            text-decoration: none;
-            text-transform: uppercase;
+            color: var(--gold); font-weight: 900; letter-spacing: -0.05em;
+            font-size: 1.6rem; text-decoration: none; text-transform: uppercase;
         }
 
         .nav-links { display: flex; gap: 40px; }
@@ -50,16 +45,46 @@
             letter-spacing: 0.2em; text-transform: uppercase; 
             opacity: 0.5; transition: 0.3s; font-weight: 500;
         }
+        .nav-links a:hover { opacity: 1; color: var(--gold); }
 
-        #vid { width: 100vw; height: 100vh; object-fit: contain; z-index: 1; transition: 0.1s; }
+        /* Video Layer */
+        #vid { width: 100vw; height: 100vh; object-fit: contain; z-index: 1; }
 
+        /* 3D Flip Button Container */
         .overlay { position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); z-index: 10; }
+        
+        .cta-container { perspective: 1000px; width: 300px; height: 50px; }
+        .cta-inner {
+            position: relative; width: 100%; height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .cta-inner.flipped { transform: rotateX(180deg); }
 
+        .cta-front, .cta-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Front Side */
         .btn-shop {
-            display: inline-block; padding: 15px 40px; border: 1px solid var(--gold); 
+            width: 100%; padding: 15px 0; border: 1px solid var(--gold); 
             color: var(--gold); text-decoration: none; font-size: 0.8rem; 
             letter-spacing: 0.3em; font-weight: bold; background: rgba(0,0,0,0.7); 
-            transition: 0.3s; text-transform: uppercase; cursor: pointer;
+            text-transform: uppercase; cursor: pointer; text-align: center;
+        }
+
+        /* Back Side (Input) */
+        .cta-back {
+            transform: rotateX(180deg); background: #000; border: 1px solid var(--gold);
+        }
+        .cta-input {
+            background: transparent; border: none; color: #fff; padding: 0 15px;
+            font-family: 'Inter', sans-serif; font-size: 0.7rem; width: 65%; outline: none;
+        }
+        .cta-submit {
+            background: var(--gold); color: #000; border: none; font-weight: 900;
+            font-size: 0.65rem; height: 100%; width: 35%; cursor: pointer; text-transform: uppercase;
         }
 
         @media (max-width: 768px) {
@@ -85,24 +110,75 @@
     </video>
 
     <div class="overlay">
-        <a href="#" class="btn-shop glitch-trigger">STUDIO OPENING SOON</a>
+        <div class="cta-container">
+            <div class="cta-inner" id="cta-flipper">
+                <div class="cta-front">
+                    <div class="btn-shop" id="lock-btn">STUDIO OPENING SOON</div>
+                </div>
+                <div class="cta-back">
+                    <input type="email" class="cta-input" placeholder="EMAIL ADDRESS" id="email-field">
+                    <button class="cta-submit" id="submit-btn" onclick="submitEmail()">Connect</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        const triggers = document.querySelectorAll('.glitch-trigger');
         const body = document.getElementById('main-body');
+        const flipper = document.getElementById('cta-flipper');
 
-        triggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
+        // Handle Glitch and Flip
+        document.getElementById('lock-btn').addEventListener('click', () => {
+            body.classList.add('glitch-active');
+            setTimeout(() => {
+                body.classList.remove('glitch-active');
+                flipper.classList.add('flipped');
+            }, 300);
+        });
+
+        // Global Glitch for Nav
+        document.querySelectorAll('.glitch-trigger').forEach(el => {
+            el.addEventListener('click', (e) => {
                 e.preventDefault();
                 body.classList.add('glitch-active');
-                setTimeout(() => {
-                    body.classList.remove('glitch-active');
-                }, 250); // Glitch duration
+                setTimeout(() => body.classList.remove('glitch-active'), 250);
             });
         });
 
-        window.addEventListener('touchstart', function() {
+        // Beehiiv Subscription via Vercel API
+        async function submitEmail() {
+            const emailField = document.getElementById('email-field');
+            const submitBtn = document.getElementById('submit-btn');
+            const email = emailField.value;
+
+            if (!email || !email.includes('@')) return;
+
+            submitBtn.innerText = "ADDING...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch("/api/subscribe", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email })
+                });
+
+                if (response.ok) {
+                    submitBtn.innerText = "YOU'RE IN";
+                    setTimeout(() => {
+                        flipper.classList.remove('flipped');
+                        emailField.value = '';
+                        submitBtn.innerText = "CONNECT";
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }
+            } catch (err) {
+                submitBtn.innerText = "ERROR";
+                submitBtn.disabled = false;
+            }
+        }
+
+        window.addEventListener('touchstart', () => {
             document.getElementById('vid').play();
         }, {once: true});
     </script>
