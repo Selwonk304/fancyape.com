@@ -126,22 +126,36 @@
     <script>
         const body = document.getElementById('main-body');
         const flipper = document.getElementById('cta-flipper');
+        
+        // Setup Evolving Audio
+        const music = new Audio('ambient-glitch.mp3');
+        music.loop = true;
 
-        // Handle Glitch and Flip
-        document.getElementById('lock-btn').addEventListener('click', () => {
+        function handleInteraction(e) {
+            // Play music on first click
+            if (music.paused) {
+                music.volume = 0.4;
+                music.play().catch(() => console.log("Audio waiting for user."));
+            }
+
+            // Trigger Glitch
             body.classList.add('glitch-active');
             setTimeout(() => {
                 body.classList.remove('glitch-active');
-                flipper.classList.add('flipped');
+                
+                // If the 'Opening Soon' button was clicked, flip it
+                if (e.currentTarget.id === 'lock-btn') {
+                    flipper.classList.add('flipped');
+                }
             }, 300);
-        });
+        }
 
-        // Global Glitch for Nav
+        // Global Glitch Triggers
+        document.getElementById('lock-btn').addEventListener('click', handleInteraction);
         document.querySelectorAll('.glitch-trigger').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
-                body.classList.add('glitch-active');
-                setTimeout(() => body.classList.remove('glitch-active'), 250);
+                handleInteraction(e);
             });
         });
 
@@ -153,7 +167,7 @@
 
             if (!email || !email.includes('@')) return;
 
-            submitBtn.innerText = "ADDING...";
+            submitBtn.innerText = "JOINING...";
             submitBtn.disabled = true;
 
             try {
